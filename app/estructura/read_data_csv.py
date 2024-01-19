@@ -5,9 +5,9 @@ def leer_datos():
     try:
         with open('datos/vgsales.csv', 'r') as f:
             lectura = csv.reader(f)
-            # next(lectura)
+            next(lectura)
             for i, l in enumerate(lectura):
-                if i >= 10:
+                if i >= 1000:
                     break
                 lista = l
                 Juegos.inser_data(lista)
