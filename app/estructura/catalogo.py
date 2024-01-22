@@ -37,7 +37,6 @@ class Juegos:
         
         return alta
 
-
 class Juego:
     def __init__(self, rank, name, plataf, year, genero, editor, v_na, v_eu, v_jp, v_otras, v_glob):
         self.rank = rank

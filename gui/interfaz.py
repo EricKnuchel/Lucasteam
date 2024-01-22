@@ -2,6 +2,7 @@ from tkinter import ttk, Tk, Button, Toplevel, Label, Entry, StringVar, Canvas
 from app.estructura.catalogo import Juegos
 from app.estructura.consultas_db import show_genere
 from app.crud.operaciones import delete_juego, update_juegos, get_info_for_id, listar_juegos_db
+from app.db.show_siglo_xx import show_siglo_xx
 
 
 class Ventana:
@@ -10,34 +11,53 @@ class Ventana:
         self.master.title("Video Game Sales")
         self.master.resizable(0, 0)
         self.master.configure(bg='#FF9EA0')
-        self.master.geometry("300x300")
+        self.master.geometry("300x350")
         self.master.eval(f'tk::PlaceWindow {str(self.master)} center')
+        # Crear un Canvas que ocupe toda la ventana
+        canvas = Canvas(self.master, width=300, height=350)
+        canvas.pack()
 
+        # Definir los colores para el degradado
+        color1 = "#FF9EA0"  # Primer color
+        color2 = "#87BAE1"  # Segundo color
+
+        # Dibujar el degradado
+        for i in range(350):
+            # Calcular el color en cada posición vertical
+            r = int((1 - i / 350) * int(color1[1:3], 16) + (i / 350) * int(color2[1:3], 16))
+            g = int((1 - i / 350) * int(color1[3:5], 16) + (i / 350) * int(color2[3:5], 16))
+            b = int((1 - i / 350) * int(color1[5:7], 16) + (i / 350) * int(color2[5:7], 16))
+            color = f"#{r:02X}{g:02X}{b:02X}"
+
+            # Dibujar una línea vertical del color correspondiente
+            canvas.create_line(0, i, 370, i, fill=color, width=1)
+
+        canvas.create_text(150, 15, text="Proyecto LucasSteam ©", font=('Arial', 12, 'bold'), fill='black')
         # Configuración de la ventana principal
         self.setup_main_window()
 
     def setup_main_window(self):
         # Botones en la ventana principal
-        insert_button = Button(self.master, text="Datos Manual", command=self.insert_data)
-        insert_button.pack(pady=10)
+        insert_button = Button(self.master, text="Datos Manual", width=25 , command=self.insert_data)
+        insert_button.place(x=60, y=40)
 
-        show_button = Button(self.master, text="Mostrar Lista de Juegos", command=self.show_list)
-        show_button.pack(pady=10)
+        show_button = Button(self.master, text="Mostrar Lista de Juegos", width=25 , command=self.show_list)
+        show_button.place(x=60, y=80)
 
-        # show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", command=Juegos.show_games_siglo_xx)
-        # show_xx.pack(pady=10)
+        show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", width=25 , command=self.show_list_xx)
+        show_xx.place(x=60, y=120)
         
-        show_db_button = Button(self.master, text="Mostrar Lista de Juegos (DB)", command=self.show_list_db)
-        show_db_button.pack(pady=10)
+        show_db_button = Button(self.master, text="Mostrar Lista de Juegos (DB)", width=25 , command=self.show_list_db)
+        show_db_button.place(x=60, y=160)
         
-        show_genero_button = Button(self.master, text="Filtrar por género", command=self.insert_genero)
-        show_genero_button.pack(pady=10)
+        show_genero_button = Button(self.master, text="Filtrar por género", width=25 , command=self.insert_genero)
+        show_genero_button.place(x=60, y=200)
         
-        delete = Button(self.master, text="Update Juego", command=self.update)
-        delete.pack(pady=10)
+        delete = Button(self.master, text="Update Juego", width=25 , command=self.update)
+        delete.place(x=60, y=240)
         
-        delete = Button(self.master, text="Delete Juego", command=self.delete)
-        delete.pack(pady=10)
+        delete = Button(self.master, text="Delete Juego", width=25 , command=self.delete)
+        delete.place(x=60, y=280)
         
     
     
@@ -389,6 +409,37 @@ class Ventana:
             tree.column(col, anchor="center", width=60)  # aqui se ajusta el año de la tabla
     
 
+
+    def show_list_xx(self):
+        # Crea una ventana secundaria para mostrar la lista de juegos del siglo XX
+        window = Toplevel(self.master)
+        window.title("Juegos del Siglo XX")
+        window.resizable(0, 0)
+        window.configure(bg='#FF9EA0')
+
+        # Creación del Treeview en la ventana secundaria
+        tree = ttk.Treeview(window)
+        self.setup_treeview(tree)
+
+        # Llama a la función show_siglo_xx para obtener los juegos del siglo XX
+        juegos_siglo_xx = show_siglo_xx()
+
+        # Inserta los datos en el Treeview
+        for juego in juegos_siglo_xx:
+            row = (
+                juego[0], juego[1], juego[2], juego[3],
+                juego[4], juego[5]
+            )
+            tree.insert("", "end", values=row)
+
+        # Configuración del scrollbar vertical
+        scrollbar = ttk.Scrollbar(window, orient="vertical", command=tree.yview)
+        scrollbar.pack(side="right", fill="y")
+
+        tree.configure(yscrollcommand=scrollbar.set)
+
+        # Empaqueta el Treeview en la ventana secundaria
+        tree.pack(expand=True, fill="both")
 
 
 def run_gui():

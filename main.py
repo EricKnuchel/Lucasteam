@@ -3,6 +3,7 @@ from gui.interfaz import run_gui
 from app.db.conexion_db import create_table
 
 
+
 def main():
     create_table()
     leer_datos()
