@@ -13,7 +13,7 @@ def leer_datos():
             for l in lectura:
                 lista = l
                 #Juegos.inser_data(lista)
-                if conn:
+                """if conn:
                     try:
                         cursor = conn.cursor()
                         #sql = "SELECT id FROM Juegos"
@@ -31,7 +31,7 @@ def leer_datos():
                         
                         cursor.close()
                     except mysql.connector.Error as e:
-                        print(f"Error de conexión: {e}")
+                        print(f"Error de conexión: {e}")"""
 
     except FileNotFoundError:
         print("Archivo no encontrado")

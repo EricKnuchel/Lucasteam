@@ -1,6 +1,7 @@
 from tkinter import ttk, Tk, Button, Toplevel, Label, Entry, StringVar
 from app.estructura.catalogo import Juegos
 from app.crud.operaciones_db import listar_juegos_db
+from app.estructura.consultas_db import show_genere
 
 
 class Ventana:
@@ -26,8 +27,11 @@ class Ventana:
         # show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", command=Juegos.show_games_siglo_xx)
         # show_xx.pack(pady=10)
         
-        show_button = Button(self.master, text="Mostrar Lista de Juegos (DB)", command=self.show_list_db)
-        show_button.pack(pady=10)
+        show_db_button = Button(self.master, text="Mostrar Lista de Juegos (DB)", command=self.show_list_db)
+        show_db_button.pack(pady=10)
+        
+        show_genero_button = Button(self.master, text="Mostrar Lista filtrada por género", command=self.insert_genero)
+        show_genero_button.pack(pady=10)
 
     def insert_data(self):
         window = Tk()
@@ -120,6 +124,25 @@ class Ventana:
              manual_genero.get(), manual_editor.get(), manual_ventas_na_e.get(), manual_ventas_eu_e.get(),
              manual_ventas_jp_e.get(), manual_ventas_ov_e.get(), manual_ventas_vg_e.get()]))
         manual_button.place(x=105, y=320)
+        
+    def insert_genero(self):
+        window = Tk()
+        window.title("Filtrar Juegos por Género")
+        window.resizable(0, 0)
+        window.configure(bg='#FF9EA0')
+        window.geometry("200x100")
+        
+        genero_l = Label(window, text="Genero", bg='#FF9EA0')
+        genero_l.pack()
+        genero = StringVar(window)
+        genero_lista = ["Sports", "Racing", "Role-Playing", "Puzzle", "Platform", "Misc", "Shooter",
+                               "Simulation", "Action", "Fighting", "Adventure", "Strategy"]
+        genero.set(genero_lista[0])
+        genero_combobox = ttk.Combobox(window, textvariable=genero, values=genero_lista, state="readonly")
+        genero_combobox.pack()
+        
+        manual_button = Button(window, text="Filtrar", command= lambda: self.show_list_genero(genero.get()))
+        manual_button.place(x=10, y=50)
 
 
     def show_list(self):
@@ -167,6 +190,36 @@ class Ventana:
             row = (
                 juego[0], juego[1], juego[2], juego[3],
                 juego[4], juego[5]
+            )
+            tree.insert("", "end", values=row)
+
+        # Configuración del scrollbar vertical
+        scrollbar = ttk.Scrollbar(window, orient="vertical", command=tree.yview)
+        scrollbar.pack(side="right", fill="y")
+
+        tree.configure(yscrollcommand=scrollbar.set)
+
+        # Empaqueta el Treeview en la ventana secundaria
+        tree.pack(expand=True, fill="both")
+        
+    def show_list_genero(self, g):
+        
+        # Crea una ventana secundaria para mostrar la lista de juegos
+        window = Toplevel(self.master)
+        window.title(f"Lista de Juegos (Género: {g}")
+        window.resizable(0, 0)
+        window.configure(bg='#FF9EA0')
+
+        # Creación del Treeview en la ventana secundaria
+        tree = ttk.Treeview(window)
+        self.setup_treeview(tree)
+
+        # Inserta los datos en el Treeview
+        lista_generos = show_genere(g)
+        for genero in lista_generos:
+            row = (
+                genero[0], genero[1], genero[2], genero[3],
+                genero[4], genero[5]
             )
             tree.insert("", "end", values=row)
 
