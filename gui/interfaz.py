@@ -31,9 +31,82 @@ class Ventana:
         
         delete = Button(self.master, text="Delete Juego", command=self.delete)
         delete.pack(pady=10)
+    
+    
+    def update(self):
+        window = Tk()
+        window.title("Update Juegos")
+        window.resizable(0, 0)
+        window.configure(bg='#FF9EA0')
+        window.geometry("250x250")
         
+        label_id = Label(window, text="ID:", bg='#FF9EA0')
+        label_id.place(x=5, y=20)
         
+        id_entry = Entry(window)
+        id_entry.place(x=25, y=20, width=25)
+        
+        manual_name_label = Label(window, text="Nombre", bg='#FF9EA0')
+        manual_name_label.pack()
+        manual_name = Entry(window)
+        manual_name.pack()
 
+        manual_plat_l = Label(window, text="Plataforma", bg='#FF9EA0')
+        manual_plat_l.pack()
+        var_plataforma = StringVar(window)
+        var_plataforma.set("Ninguna")
+        plataformas = ["Ninguna", "Wii", "NES", "GB", "X360", "PS", "PS2", "PS3", "PS4", "PS5", "SNES", "GBA", "3DS",
+                       "N64", "XB", "2600", "DS", "XOne", "GC", "GEN", "PSP", "WiiU", "PC", "DC", ]
+        plataforma_combobox = ttk.Combobox(window, textvariable=var_plataforma, values=plataformas, state="readonly")
+        plataforma_combobox.pack()
+
+        manual_year_l = Label(window, text="Año", bg='#FF9EA0')
+        manual_year_l.pack()
+        manual_years = StringVar(window)
+        manual_years.set("1952")
+        manual_vears_list = [str(manual_vears_list) for manual_vears_list in range(1952, 2024)]
+        manual_plataform_year_menu = ttk.Combobox(window, textvariable=manual_years, values=manual_vears_list,
+                                                  state="readonly")
+        manual_plataform_year_menu.pack()
+
+        manual_genero_l = Label(window, text="Genero", bg='#FF9EA0')
+        manual_genero_l.pack()
+        manual_genero = StringVar(window)
+        manual_genero.set("Ninguna")
+        manual_genero_lista = ["Sports", "Racing", "Role-Playing", "Puzzle", "Platform", "Misc", "Shooter",
+                               "Simulation", "Action", "Fighting", "Adventure", "Strategy"]
+        genero_combobox = ttk.Combobox(window, textvariable=manual_genero, values=manual_genero_lista, state="readonly")
+        genero_combobox.pack()
+
+        manual_editor_l = Label(window, text="Editor", bg='#FF9EA0')
+        manual_editor_l.pack()
+        manual_editor = StringVar(window)
+        manual_editor.set("Ninguna")
+        manual_editor_lista = ["Desconocido", "Nintendo", "Microsoft Game Studios", "Take-Two Interactive",
+                               "Sony Computer Entertainment", "Activision", "Ubisoft", "Bethesda Softworks",
+                               "Electronic Arts", "Sega", "Square Enix", "Atari", "505 Games", "Capcom",
+                               "GT Interactive", "Konami Digital Entertainment", "Namco Bandai Games",
+                               "Warner Bros. Interactive Entertainment", "Majesco Entertainment", "Codemasters",
+                               "RedOctane", "THQ", "Fox Interactive", "Universal Interactive", "LucasArts",
+                               "Virgin Interactive", "Palcom", "Hasbro Interactive", "Vivendi Games", "NCSoft",
+                               "Deep Silver", "Arena Entertainment", "Valve Software", "ASCII Entertainment",
+                               "Mindscape", "Infogrames"]
+        editor_combobox = ttk.Combobox(window, textvariable=manual_editor, values=manual_editor_lista, state="readonly")
+        editor_combobox.pack()
+        
+        
+        def update_juegos_wrapper():
+                try:
+                    ids = int(id_entry.get())
+                    update_juegos(ids, manual_name.get(), var_plataforma.get(), manual_years.get(),
+                                manual_genero.get(), manual_editor.get())
+
+                except ValueError:
+                    print("Error: Ingresa un número válido en el campo ID.")
+        
+        manual_button = Button(window, text="Update", bg="#00FFFF", command=update_juegos_wrapper)
+        manual_button.place(x=100, y=220)
+        
     def delete(self):
         self.confirmacion_dell = False
         self.window_del = Tk()

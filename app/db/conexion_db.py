@@ -13,7 +13,6 @@ def conectar_a_mysql():
             )
 
         if conn.is_connected():
-            print("Conexión exitosa")
             return conn
 
     except mysql.connector.Error as e:
