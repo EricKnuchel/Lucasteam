@@ -1,6 +1,7 @@
 import csv
 from app.estructura.catalogo import Juegos
 
+
 def leer_datos():
     try:
         with open('datos/vgsales.csv', 'r') as f:
@@ -11,9 +12,6 @@ def leer_datos():
                     break
                 lista = l
                 Juegos.inser_data(lista)
-            # x = Juegos.lista_juegos
-            # print(x[0].name)
-            print("Si se imprime este mensaje funciona correcto.")
 
     except FileNotFoundError:
         print("Archivo no encontrado")
@@ -23,4 +21,3 @@ def leer_datos():
         print("Error al leer los datos del CSV")
     except Exception as e:
         print(f"A orcurrido un error: {e}")
-

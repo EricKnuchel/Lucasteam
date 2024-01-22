@@ -15,18 +15,18 @@ def campos_correctos(j):
     caracteres_no_permitidos = r"%$#@¨{}[]\^`"
     punto_coma_guion = [";","_"]
     for a in lista_atrib:
-        if a.isspace() or a == "":
+        if str(a).isspace() or str(a) == "":
             return correcto, print("No puede haber campos vacíos")
         
         for i in punto_coma_guion:
-            if i in a:
+            if i in str(a):
                 return correcto, print(f"{a} no puede contener '{i}'")
         
-        if re.search(f"[{re.escape(caracteres_no_permitidos)}]",a):
+        if re.search(f"[{re.escape(caracteres_no_permitidos)}]",str(a)):
             return correcto, print(f"El elemento {a} contiene caracteres no perimitidos")
         
     correcto = True
-    return correcto, print("Todos los campos son correctos")
+    return correcto
 
 def validar_nombre(n):
     correcto = False
