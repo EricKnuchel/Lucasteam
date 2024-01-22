@@ -1,5 +1,6 @@
 from app.db.conexion_db import conectar_a_mysql
 
+
 def update_juegos(id, nombre, plataforma, year, genero, publisher):
     conn = conectar_a_mysql()
     if conn:
@@ -25,11 +26,11 @@ def delete_juego(id):
     conn = conectar_a_mysql()
     if conn:
         cursor = conn.cursor()
-        
+
         sql = "DELETE from Juegos WHERE id=%s"
-        
+
         try:
-            cursor.execute(sql, (id, ))
+            cursor.execute(sql, (id,))
             if cursor.rowcount > 0:
                 conn.commit()
                 print("Eliminación exitosa")
@@ -38,17 +39,18 @@ def delete_juego(id):
                 conn.rollback()
                 print("El juego con ID={} no existe".format(id))
                 return False
-            
+
         except Exception as e:
             conn.rollback()
             print("Error al eliminar el juego", str(e))
-            
+
         finally:
             cursor.close()
             conn.close()
     else:
         return False
-            
+
+
 def get_info_for_id(id):
     conn = conectar_a_mysql()
     if conn:
@@ -56,19 +58,20 @@ def get_info_for_id(id):
 
         try:
             sql = "select * from Juegos WHERE id=%s"
-            cursor.execute(sql, (id, ))
+            cursor.execute(sql, (id,))
             res = cursor.fetchone()
             if res:
                 return res
             else:
                 print(f"Error, al obtener la informacion de este id: {id}")
-            
+
         except Exception as e:
             print("Error al obtner la info", str(e))
-            
+
         finally:
             cursor.close()
             conn.close()
+
 
 def listar_juegos_db():
     conn = conectar_a_mysql()

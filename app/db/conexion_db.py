@@ -4,13 +4,13 @@ import mysql.connector
 def conectar_a_mysql():
     try:
         # Crear una conexión
-        conn = mysql.connector.connect(            
-            user = 'root',
-            password = 'aeCB243cFb1aeagHf5cgecHDB35a3haB',
-            host = 'viaduct.proxy.rlwy.net',
-            database = 'railway',
-            port = '52288'
-            )
+        conn = mysql.connector.connect(
+            user='root',
+            password='aeCB243cFb1aeagHf5cgecHDB35a3haB',
+            host='viaduct.proxy.rlwy.net',
+            database='railway',
+            port='52288'
+        )
 
         if conn.is_connected():
             return conn
@@ -48,4 +48,3 @@ def create_table():
         finally:
             cursor.close()
             conn.close()
-            

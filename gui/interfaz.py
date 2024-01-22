@@ -38,42 +38,40 @@ class Ventana:
 
     def setup_main_window(self):
         # Botones en la ventana principal
-        insert_button = Button(self.master, text="Datos Manual", width=25 , command=self.insert_data)
+        insert_button = Button(self.master, text="Datos Manual", width=25, command=self.insert_data)
         insert_button.place(x=60, y=40)
 
-        show_button = Button(self.master, text="Mostrar Lista de Juegos", width=25 , command=self.show_list)
+        show_button = Button(self.master, text="Mostrar Lista de Juegos", width=25, command=self.show_list)
         show_button.place(x=60, y=80)
 
-        show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", width=25 , command=self.show_list_xx)
+        show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", width=25, command=self.show_list_xx)
         show_xx.place(x=60, y=120)
-        
-        show_db_button = Button(self.master, text="Mostrar Lista de Juegos (DB)", width=25 , command=self.show_list_db)
+
+        show_db_button = Button(self.master, text="Mostrar Lista de Juegos (DB)", width=25, command=self.show_list_db)
         show_db_button.place(x=60, y=160)
-        
-        show_genero_button = Button(self.master, text="Filtrar por género", width=25 , command=self.insert_genero)
+
+        show_genero_button = Button(self.master, text="Filtrar por género", width=25, command=self.insert_genero)
         show_genero_button.place(x=60, y=200)
-        
-        delete = Button(self.master, text="Update Juego", width=25 , command=self.update)
+
+        delete = Button(self.master, text="Update Juego", width=25, command=self.update)
         delete.place(x=60, y=240)
-        
-        delete = Button(self.master, text="Delete Juego", width=25 , command=self.delete)
+
+        delete = Button(self.master, text="Delete Juego", width=25, command=self.delete)
         delete.place(x=60, y=280)
-        
-    
-    
+
     def update(self):
         window = Tk()
         window.title("Update Juegos")
         window.resizable(0, 0)
         window.configure(bg='#FF9EA0')
         window.geometry("250x250")
-        
+
         label_id = Label(window, text="ID:", bg='#FF9EA0')
         label_id.place(x=5, y=20)
-        
+
         id_entry = Entry(window)
         id_entry.place(x=25, y=20, width=25)
-        
+
         manual_name_label = Label(window, text="Nombre", bg='#FF9EA0')
         manual_name_label.pack()
         manual_name = Entry(window)
@@ -121,20 +119,19 @@ class Ventana:
                                "Mindscape", "Infogrames"]
         editor_combobox = ttk.Combobox(window, textvariable=manual_editor, values=manual_editor_lista, state="readonly")
         editor_combobox.pack()
-        
-        
-        def update_juegos_wrapper():
-                try:
-                    ids = int(id_entry.get())
-                    update_juegos(ids, manual_name.get(), var_plataforma.get(), manual_years.get(),
-                                manual_genero.get(), manual_editor.get())
 
-                except ValueError:
-                    print("Error: Ingresa un número válido en el campo ID.")
-        
+        def update_juegos_wrapper():
+            try:
+                ids = int(id_entry.get())
+                update_juegos(ids, manual_name.get(), var_plataforma.get(), manual_years.get(),
+                              manual_genero.get(), manual_editor.get())
+
+            except ValueError:
+                print("Error: Ingresa un número válido en el campo ID.")
+
         manual_button = Button(window, text="Update", bg="#00FFFF", command=update_juegos_wrapper)
         manual_button.place(x=100, y=220)
-        
+
     def delete(self):
         self.confirmacion_dell = False
         self.window_del = Tk()
@@ -145,7 +142,7 @@ class Ventana:
 
         label = Label(self.window_del, text="ID:", bg='#FF9EA0')
         label.place(x=5, y=5)
-        
+
         self.id_entry = Entry(self.window_del)
         self.id_entry.place(x=25, y=5, width=50)
 
@@ -154,7 +151,7 @@ class Ventana:
 
         get_id = Button(self.window_del, text="Get info", command=self.get_info_from_entry)
         get_id.place(x=140, y=50)
-        
+
         delete_id = Button(self.window_del, text="Delete ID", bg="#DC2727", command=self.delete_id)
         delete_id.place(x=70, y=110)
 
@@ -166,22 +163,19 @@ class Ventana:
             self.confirmacion_dell = True
             return
         delete_juego(self.ident)
-        
-        
 
     def get_info_from_entry(self):
         try:
             self.ident = int(self.id_entry.get())
             info_text = self.get_info(self.ident)
-            
+
             self.canvas_comandos.delete("all")
-            
+
             canvas_comandos = Canvas(self.window_del, bg="white", height=65, width=130)
             canvas_comandos.place(x=1, y=30)
             canvas_comandos.create_text(35, 35, text=info_text, fill="black", font='Arial 7')
         except ValueError:
             print("Error: Ingresa un número válido en el Entry.")
-
 
     def get_info(self, ident):
         info = get_info_for_id(ident)
@@ -197,7 +191,6 @@ class Ventana:
             return x
         else:
             return "Error: No se pudo obtener la información para el ID especificado."
-
 
     def insert_data(self):
         window = Tk()
@@ -290,26 +283,25 @@ class Ventana:
              manual_genero.get(), manual_editor.get(), manual_ventas_na_e.get(), manual_ventas_eu_e.get(),
              manual_ventas_jp_e.get(), manual_ventas_ov_e.get(), manual_ventas_vg_e.get()]))
         manual_button.place(x=105, y=320)
-        
+
     def insert_genero(self):
         window = Tk()
         window.title("Filtrar Juegos por Género")
         window.resizable(0, 0)
         window.configure(bg='#FF9EA0')
         window.geometry("200x100")
-        
+
         genero_l = Label(window, text="Genero", bg='#FF9EA0')
         genero_l.pack()
         genero = StringVar(window)
         genero_lista = ["Sports", "Racing", "Role-Playing", "Puzzle", "Platform", "Misc", "Shooter",
-                               "Simulation", "Action", "Fighting", "Adventure", "Strategy"]
+                        "Simulation", "Action", "Fighting", "Adventure", "Strategy"]
         genero.set(genero_lista[0])
         genero_combobox = ttk.Combobox(window, textvariable=genero, values=genero_lista, state="readonly")
         genero_combobox.pack()
-        
-        manual_button = Button(window, text="Filtrar", command= lambda: self.show_list_genero(genero.get()))
-        manual_button.place(x=80, y=50)
 
+        manual_button = Button(window, text="Filtrar", command=lambda: self.show_list_genero(genero.get()))
+        manual_button.place(x=80, y=50)
 
     def show_list(self):
         # Crea una ventana secundaria para mostrar la lista de juegos
@@ -338,7 +330,7 @@ class Ventana:
 
         # Empaqueta el Treeview en la ventana secundaria
         tree.pack(expand=True, fill="both")
-        
+
     def show_list_db(self):
         # Crea una ventana secundaria para mostrar la lista de juegos
         window = Toplevel(self.master)
@@ -367,9 +359,9 @@ class Ventana:
 
         # Empaqueta el Treeview en la ventana secundaria
         tree.pack(expand=True, fill="both")
-        
+
     def show_list_genero(self, g):
-        
+
         # Crea una ventana secundaria para mostrar la lista de juegos
         window = Toplevel(self.master)
         window.title(f"Lista de Juegos (Género: {g}")
@@ -407,8 +399,6 @@ class Ventana:
         for col in columns:
             tree.heading(col, text=col)
             tree.column(col, anchor="center", width=60)  # aqui se ajusta el año de la tabla
-    
-
 
     def show_list_xx(self):
         # Crea una ventana secundaria para mostrar la lista de juegos del siglo XX

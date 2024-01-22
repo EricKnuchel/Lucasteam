@@ -2,6 +2,7 @@ import unittest
 from app.estructura.catalogo import Juego, Juegos
 from app.crud.operaciones import delete_juego, update_juegos
 
+
 # Prueba unitaria de la funsion insert_data
 class TestJuegos(unittest.TestCase):
     def test_inser_data(self):
@@ -15,6 +16,7 @@ class TestJuegos(unittest.TestCase):
         expected_result = [Juego(*test_data)]
 
         self.assertEqual(actual_result, expected_result)
+
 
 class TestDeleteJuego(unittest.TestCase):
 
@@ -40,7 +42,8 @@ class TestUpdateJuegos(unittest.TestCase):
         genero_nuevo = "Nuevo Genero"
         publisher_nuevo = "Nuevo Publisher"
 
-        resultado = update_juegos(id_a_actualizar, nombre_nuevo, plataforma_nueva, year_nuevo, genero_nuevo, publisher_nuevo)
+        resultado = update_juegos(id_a_actualizar, nombre_nuevo, plataforma_nueva, year_nuevo, genero_nuevo,
+                                  publisher_nuevo)
         self.assertTrue(resultado, "La actualización debería ser exitosa")
 
     def test_update_juegos_fallido(self):
@@ -52,11 +55,9 @@ class TestUpdateJuegos(unittest.TestCase):
         genero_nuevo = "Nuevo Genero"
         publisher_nuevo = "Nuevo Publisher"
 
-        resultado = update_juegos(id_inexistente, nombre_nuevo, plataforma_nueva, year_nuevo, genero_nuevo, publisher_nuevo)
+        resultado = update_juegos(id_inexistente, nombre_nuevo, plataforma_nueva, year_nuevo, genero_nuevo,
+                                  publisher_nuevo)
         self.assertFalse(resultado, "La actualización debería fallar ya que el juego con el ID proporcionado no existe")
-
-
-
 
 
 if __name__ == '__main__':

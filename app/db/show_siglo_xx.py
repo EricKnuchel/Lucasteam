@@ -26,4 +26,3 @@ def show_siglo_xx():
         conn.close()
 
     return juegos_siglo_xx
-
