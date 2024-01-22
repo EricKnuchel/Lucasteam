@@ -1,5 +1,4 @@
 import mysql.connector
-# import pymysql
 
 def conectar_a_mysql():
     try:
@@ -24,20 +23,21 @@ def create_table():
     if conn:
         try:
             cursor = conn.cursor()
-            
+
             command = """
             CREATE TABLE IF NOT EXISTS Juegos(
-                id INT AUTO_INCREMENT Primary key,
+                id INT NOT NULL AUTO_INCREMENT,
                 nombre Varchar(255) NOT NULL,
                 plataforma Varchar(255),
                 year INT(4) NOT NULL,
                 genero Varchar(255),
                 publisher VARCHAR(255),
-                V_NA Double ,
-                V_EU Double ,
-                V_JP Double ,
-                V_other Double ,
-                V_Global Double
+                V_NA Double NOT NULL,
+                V_EU Double NOT NULL,
+                V_JP Double Not NULL,
+                V_other Double NOT NULL,
+                V_Global Double NOT NULL,
+                PRIMARY KEY(id)
             )
             """
             cursor.execute(command)

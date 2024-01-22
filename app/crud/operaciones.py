@@ -30,8 +30,14 @@ def delete_juego(id):
         
         try:
             cursor.execute(sql, (id, ))
-            conn.commit()
-            print("Eliminacion exitosa")
+            if cursor.rowcount > 0:
+                conn.commit()
+                print("Eliminación exitosa")
+                return True
+            else:
+                conn.rollback()
+                print("El juego con ID={} no existe".format(id))
+                return False
             
         except Exception as e:
             conn.rollback()
@@ -40,6 +46,8 @@ def delete_juego(id):
         finally:
             cursor.close()
             conn.close()
+    else:
+        return False
             
 def get_info_for_id(id):
     conn = conectar_a_mysql()
@@ -61,4 +69,16 @@ def get_info_for_id(id):
         finally:
             cursor.close()
             conn.close()
-            
+
+def listar_juegos_db():
+    conn = conectar_a_mysql()
+    if conn:
+        try:
+            cursor = conn.cursor()
+            sql = 'SELECT id,nombre,plataforma,year,genero,publisher FROM Juegos'
+            cursor.execute(sql)
+            lista_j = cursor.fetchall()
+            return lista_j
+        finally:
+            cursor.close()
+            conn.close()

@@ -63,6 +63,7 @@ def validar_ventas(v):
                     print("El número no puede ser negativo")
                     return correcto,v
                 else:
+                    vt = format(vt, ".2f")
                     v[i] = vt
             except ValueError:
                 print("No es un número")

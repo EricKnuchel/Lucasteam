@@ -36,18 +36,6 @@ class Juegos:
             print("El juego ya existe")
         
         return alta
-    
-    @classmethod
-    def show_siglo_xx(cls):
-        juegos_siglo_xx = [juego for juego in cls.lista_juegos if str(1900) <= juego.year <= str(1999)]
-        return juegos_siglo_xx
-
-    @classmethod
-    def show_games_siglo_xx(cls):
-        juego_instance = Juegos
-        siglo_xx_games = juego_instance.show_siglo_xx()
-        for juego in siglo_xx_games:
-            print(f"{juego.rank}: {juego.name}, Year: {juego.year}")
 
 
 class Juego:
