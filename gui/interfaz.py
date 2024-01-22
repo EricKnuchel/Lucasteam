@@ -1,5 +1,8 @@
 from tkinter import ttk, Tk, Button, Toplevel, Label, Entry, StringVar
+
+import app.db.show_siglo_xx
 from app.estructura.catalogo import Juegos
+from app.db.show_siglo_xx import show_siglo_xx
 
 
 class Ventana:
@@ -22,8 +25,8 @@ class Ventana:
         show_button = Button(self.master, text="Mostrar Lista de Juegos", command=self.show_list)
         show_button.pack(pady=10)
 
-        # show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", command=Juegos.show_games_siglo_xx)
-        # show_xx.pack(pady=10)
+        show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", command=self.show_list_xx)
+        show_xx.pack(pady=10)
 
     def insert_data(self):
         window = Tk()
@@ -155,6 +158,37 @@ class Ventana:
         for col in columns:
             tree.heading(col, text=col)
             tree.column(col, anchor="center", width=60)  # aqui se ajusta el año de la tabla
+
+    def show_list_xx(self):
+        # Crea una ventana secundaria para mostrar la lista de juegos del siglo XX
+        window = Toplevel(self.master)
+        window.title("Juegos del Siglo XX")
+        window.resizable(0, 0)
+        window.configure(bg='#FF9EA0')
+
+        # Creación del Treeview en la ventana secundaria
+        tree = ttk.Treeview(window)
+        self.setup_treeview(tree)
+
+        # Llama a la función show_siglo_xx para obtener los juegos del siglo XX
+        juegos_siglo_xx = show_siglo_xx()
+
+        # Inserta los datos en el Treeview
+        for juego in juegos_siglo_xx:
+            row = (
+                juego[0], juego[1], juego[2], juego[3],
+                juego[4], juego[5]
+            )
+            tree.insert("", "end", values=row)
+
+        # Configuración del scrollbar vertical
+        scrollbar = ttk.Scrollbar(window, orient="vertical", command=tree.yview)
+        scrollbar.pack(side="right", fill="y")
+
+        tree.configure(yscrollcommand=scrollbar.set)
+
+        # Empaqueta el Treeview en la ventana secundaria
+        tree.pack(expand=True, fill="both")
 
 
 def run_gui():

@@ -1,5 +1,5 @@
 import mysql.connector
-# import pymysql
+
 
 def conectar_a_mysql():
     try:
@@ -19,6 +19,7 @@ def conectar_a_mysql():
     except mysql.connector.Error as e:
         print(f"Error de conexión: {e}")
         return None
+
 
 def create_table():
     conn = conectar_a_mysql()
