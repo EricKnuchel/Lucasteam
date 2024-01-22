@@ -1,5 +1,6 @@
-from tkinter import ttk, Tk, Button, Toplevel, Label, Entry, StringVar
+from tkinter import ttk, Tk, Button, Toplevel, Label, Entry, StringVar, Canvas
 from app.estructura.catalogo import Juegos
+from app.crud.operaciones import delete_juego, update_juegos, get_info_for_id
 
 
 class Ventana:
@@ -22,8 +23,77 @@ class Ventana:
         show_button = Button(self.master, text="Mostrar Lista de Juegos", command=self.show_list)
         show_button.pack(pady=10)
 
-        # show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", command=Juegos.show_games_siglo_xx)
-        # show_xx.pack(pady=10)
+        show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", command=Juegos.show_games_siglo_xx)
+        show_xx.pack(pady=10)
+        
+        delete = Button(self.master, text="Delete Juego", command=self.delete)
+        delete.pack(pady=10)
+        
+        
+
+    def delete(self):
+        self.confirmacion_dell = False
+        self.window_del = Tk()
+        self.window_del.title("Delete Juegos")
+        self.window_del.resizable(0, 0)
+        self.window_del.configure(bg='#FF9EA0')
+        self.window_del.geometry("200x150")
+
+        label = Label(self.window_del, text="ID:", bg='#FF9EA0')
+        label.place(x=5, y=5)
+        
+        self.id_entry = Entry(self.window_del)
+        self.id_entry.place(x=25, y=5, width=50)
+
+        self.canvas_comandos = Canvas(self.window_del, bg="white", height=65, width=130)
+        self.canvas_comandos.place(x=1, y=30)
+
+        get_id = Button(self.window_del, text="Get info", command=self.get_info_from_entry)
+        get_id.place(x=140, y=50)
+        
+        delete_id = Button(self.window_del, text="Delete ID", bg="#DC2727", command=self.delete_id)
+        delete_id.place(x=70, y=110)
+
+        self.window_del.mainloop()
+
+    def delete_id(self):
+        if not self.confirmacion_dell:
+            print("Seguro que desea borrar este juego")
+            self.confirmacion_dell = True
+            return
+        delete_juego(self.ident)
+        
+        
+
+    def get_info_from_entry(self):
+        try:
+            self.ident = int(self.id_entry.get())
+            info_text = self.get_info(self.ident)
+            
+            self.canvas_comandos.delete("all")
+            
+            canvas_comandos = Canvas(self.window_del, bg="white", height=65, width=130)
+            canvas_comandos.place(x=1, y=30)
+            canvas_comandos.create_text(35, 35, text=info_text, fill="black", font='Arial 7')
+        except ValueError:
+            print("Error: Ingresa un número válido en el Entry.")
+
+
+    def get_info(self, ident):
+        info = get_info_for_id(ident)
+
+        if info is not None:
+            x = f"""
+            Nombre: {info[1]}
+            Plataforma: {info[2]}
+            Año: {info[3]}
+            Género: {info[4]}
+            Editor: {info[5]}
+            """
+            return x
+        else:
+            return "Error: No se pudo obtener la información para el ID especificado."
+
 
     def insert_data(self):
         window = Tk()
@@ -155,6 +225,8 @@ class Ventana:
         for col in columns:
             tree.heading(col, text=col)
             tree.column(col, anchor="center", width=60)  # aqui se ajusta el año de la tabla
+    
+
 
 
 def run_gui():

@@ -26,8 +26,6 @@ def create_table():
         try:
             cursor = conn.cursor()
             
-            # cursor.execute("Drop table Juegos")
-            
             command = """
             CREATE TABLE IF NOT EXISTS Juegos(
                 id INT AUTO_INCREMENT Primary key,
@@ -36,11 +34,11 @@ def create_table():
                 year INT(4) NOT NULL,
                 genero Varchar(255),
                 publisher VARCHAR(255),
-                V_NA Double NOT NULL,
-                V_EU Double NOT NULL,
-                V_JP Double Not NULL,
-                V_other Double NOT NULL,
-                V_Global Double NOT NULL
+                V_NA Double ,
+                V_EU Double ,
+                V_JP Double ,
+                V_other Double ,
+                V_Global Double
             )
             """
             cursor.execute(command)
