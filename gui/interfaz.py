@@ -26,6 +26,9 @@ class Ventana:
         show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", command=Juegos.show_games_siglo_xx)
         show_xx.pack(pady=10)
         
+        delete = Button(self.master, text="Update Juego", command=self.update)
+        delete.pack(pady=10)
+        
         delete = Button(self.master, text="Delete Juego", command=self.delete)
         delete.pack(pady=10)
         
