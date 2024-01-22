@@ -27,7 +27,7 @@ class Ventana:
 
     def insert_data(self):
         window = Tk()
-        window.title("Incert Juegos")
+        window.title("Insert Juegos")
         window.resizable(0, 0)
         window.configure(bg='#FF9EA0')
         window.geometry("250x350")
@@ -116,6 +116,7 @@ class Ventana:
              manual_genero.get(), manual_editor.get(), manual_ventas_na_e.get(), manual_ventas_eu_e.get(),
              manual_ventas_jp_e.get(), manual_ventas_ov_e.get(), manual_ventas_vg_e.get()]))
         manual_button.place(x=105, y=320)
+
 
     def show_list(self):
         # Crea una ventana secundaria para mostrar la lista de juegos

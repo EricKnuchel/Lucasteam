@@ -8,7 +8,7 @@ def leer_datos():
             lectura = csv.reader(f)
             next(lectura)
             for i, l in enumerate(lectura):
-                if i >= 10:
+                if i >= 5:
                     break
                 lista = l
                 Juegos.inser_data(lista)
