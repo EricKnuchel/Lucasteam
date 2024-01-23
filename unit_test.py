@@ -25,7 +25,7 @@ class TestDeleteJuego(unittest.TestCase):
 
     def test_delete_juego_exitoso(self):
         # Supongamos que 'id_a_eliminar' es un ID válido que quieres probar
-        resultado = delete_juego(1301) # cambiar ide siempre que se use la pruea unitaria
+        resultado = delete_juego(1303) # cambiar ide siempre que se use la pruea unitaria
         self.assertTrue(resultado, "La eliminación debería ser exitosa")
 
     def test_delete_juego_fallido(self):
@@ -98,6 +98,7 @@ class TestFiltrarGenero(unittest.TestCase):
         self.assertTrue(resultados_filtrados, f"No se encontraron elementos con el género {genero_esperado}")
         for g in resultados_filtrados:
             self.assertIn(genero_esperado, g, f"El género {genero_esperado} no está presente en el elemento {g}")
+
 
 class TestShowSigloXX(unittest.TestCase):
     def test_show_siglo_xx_success(self):
