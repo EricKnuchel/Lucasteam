@@ -5,10 +5,9 @@ def update_juegos(id, nombre, plataforma, year, genero, publisher):
     conn = conectar_a_mysql()
     if conn:
         cursor = conn.cursor()
-
-        sql = "UPDATE Juegos SET nombre=%s, plataforma=%s, year=%s, genero=%s, publisher=%s WHERE id=%s"
-
         try:
+            sql = "UPDATE Juegos SET nombre=%s, plataforma=%s, year=%s, genero=%s, publisher=%s WHERE id=%s"
+
             cursor.execute(sql, (nombre, plataforma, year, genero, publisher, id))
             conn.commit()
             print("Registro actualizado exitosamente!")
