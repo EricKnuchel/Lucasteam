@@ -1,13 +1,14 @@
 import unittest
 from app.estructura.catalogo import Juego, Juegos
-from app.crud.operaciones import delete_juego, update_juegos
+from app.crud.operaciones import delete_juego, update_juegos, listar_juegos_db
+from app.db.consultas_db import show_genere
 
 
 # Prueba unitaria de la funsion insert_data
 class TestJuegos(unittest.TestCase):
     def test_inser_data(self):
-        test_data = ['1', 'Example Game', 'PlatformX', '2022', 'Action', 'PublisherY', '10.0', '5.0', '2.0', '1.0',
-                     '18.0']
+        test_data = ['1', 'Example game', 'PlatformX', '2022', 'Action', 'PublisherY', '10.00', '5.00', '2.00', '1.00',
+                     '18.00']
 
         Juegos.inser_data(test_data)
 
@@ -58,6 +59,38 @@ class TestUpdateJuegos(unittest.TestCase):
         resultado = update_juegos(id_inexistente, nombre_nuevo, plataforma_nueva, year_nuevo, genero_nuevo,
                                   publisher_nuevo)
         self.assertFalse(resultado, "La actualización debería fallar ya que el juego con el ID proporcionado no existe")
+        
+
+class TestListarDatosDB(unittest.TestCase):
+    #Se comprueba que los datos devueltos traen todos los campos
+    def test_campos_lista_db(self):
+        num_campos_esperados = 6
+        lista_db = listar_juegos_db()
+        
+        for d in lista_db:
+            self.assertEqual(len(d),num_campos_esperados)
+
+        
+class TestFiltrarGenero(unittest.TestCase):
+    
+    #Se comprueba que la columna género es la indicada en el filtro (caso "Sports")
+    def test_lista_filtrar_genero(self):
+        genero_esperado = "Sports"
+        lista_gen = show_genere(genero_esperado)
+        
+        for g in lista_gen:
+            self.assertEqual(g[4],genero_esperado)
+            
+    #Se comprueba que los datos devueltos traen todos los campos
+    def test_campos_lista_filtrar_genero(self):
+        num_campos_esperados = 6
+        genero_esperado = "Sports"
+        lista_gen = show_genere(genero_esperado)
+        
+        for g in lista_gen:
+            self.assertEqual(len(g),num_campos_esperados)
+        
+    
 
 
 if __name__ == '__main__':
