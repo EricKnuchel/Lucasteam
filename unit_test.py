@@ -1,6 +1,7 @@
 import unittest
 from app.estructura.catalogo import Juego, Juegos
 from app.crud.operaciones import delete_juego, update_juegos
+from app.db.consultas_db import show_siglo_xx
 
 
 # Prueba unitaria de la funsion insert_data
@@ -28,7 +29,7 @@ class TestDeleteJuego(unittest.TestCase):
     def test_delete_juego_fallido(self):
         # Supongamos que 'id_inexistente' es un ID que no existe y quieres probar la caída
         resultado = delete_juego(17000)
-        self.assertFalse(resultado, "La eliminación debería fallar ya que el juego no existe")
+        self.assertFalse(resultado, "La eliminación debería fallar ya que el juego no existe") 
 
 
 class TestUpdateJuegos(unittest.TestCase):
@@ -58,6 +59,21 @@ class TestUpdateJuegos(unittest.TestCase):
         resultado = update_juegos(id_inexistente, nombre_nuevo, plataforma_nueva, year_nuevo, genero_nuevo,
                                   publisher_nuevo)
         self.assertFalse(resultado, "La actualización debería fallar ya que el juego con el ID proporcionado no existe")
+
+
+class TestShowSigloXX(unittest.TestCase):
+    def test_show_siglo_xx_success(self):
+        # Llama a la función
+        result = show_siglo_xx()
+
+        # Verifica que la función devuelva una lista no vacía
+        self.assertTrue(result)
+
+        # Verifica que todos los datos estan entre 1900 y 1999
+        for juego in result:
+            year = juego[3]
+            self.assertTrue(1900 <= year <= 1999)
+            self.assertEqual(len(juego),11)
 
 
 if __name__ == '__main__':
