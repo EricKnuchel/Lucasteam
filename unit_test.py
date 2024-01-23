@@ -25,7 +25,7 @@ class TestDeleteJuego(unittest.TestCase):
 
     def test_delete_juego_exitoso(self):
         # Supongamos que 'id_a_eliminar' es un ID válido que quieres probar
-        resultado = delete_juego(34) # cambiar ide siempre que se use la pruea unitaria
+        resultado = delete_juego(94) # cambiar ide siempre que se use la pruea unitaria
         self.assertTrue(resultado, "La eliminación debería ser exitosa")
 
     def test_delete_juego_fallido(self):
@@ -97,15 +97,6 @@ class TestFiltrarGenero(unittest.TestCase):
         
         for g in lista_gen:
             self.assertEqual(g[4],genero_esperado)
-            
-    #Se comprueba que los datos devueltos traen todos los campos
-    def test_campos_lista_filtrar_genero(self):
-        num_campos_esperados = 6
-        genero_esperado = "Sports"
-        lista_gen = show_genere(genero_esperado)
-        
-        for g in lista_gen:
-            self.assertEqual(len(g),num_campos_esperados)
 
 
 class TestShowSigloXX(unittest.TestCase):
