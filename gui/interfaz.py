@@ -1,8 +1,8 @@
 from tkinter import ttk, Tk, Button, Toplevel, Label, Entry, StringVar, Canvas
 from app.estructura.catalogo import Juegos
-from app.estructura.consultas_db import show_genere
+from app.db.consultas_db import show_genere, show_siglo_xx
 from app.crud.operaciones import delete_juego, update_juegos, get_info_for_id, listar_juegos_db
-from app.db.show_siglo_xx import show_siglo_xx
+
 
 
 class Ventana:

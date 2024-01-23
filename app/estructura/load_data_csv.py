@@ -32,6 +32,7 @@ def leer_datos():
                         cursor.close()
                     except mysql.connector.Error as e:
                         print(f"Error de conexión: {e}")"""
+                Juegos.inser_data(lista)
 
     except FileNotFoundError:
         print("Archivo no encontrado")
