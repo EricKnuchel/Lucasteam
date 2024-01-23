@@ -4,7 +4,6 @@ from app.db.consultas_db import show_genere, show_siglo_xx
 from app.crud.operaciones import delete_juego, update_juegos, get_info_for_id, listar_juegos_db
 
 
-
 class Ventana:
     def __init__(self, master):
         self.master = master
@@ -119,7 +118,6 @@ class Ventana:
                                "Mindscape", "Infogrames"]
         editor_combobox = ttk.Combobox(window, textvariable=manual_editor, values=manual_editor_lista, state="readonly")
         editor_combobox.pack()
-        
 
         def update_juegos_wrapper():
             try:
@@ -300,10 +298,9 @@ class Ventana:
         genero.set(genero_lista[0])
         genero_combobox = ttk.Combobox(window, textvariable=genero, values=genero_lista, state="readonly")
         genero_combobox.pack()
-        
-        manual_button = Button(window, text="Filtrar", command= lambda: self.show_list_genero(genero.get()))
-        manual_button.pack(pady=10)
 
+        manual_button = Button(window, text="Filtrar", command=lambda: self.show_list_genero(genero.get()))
+        manual_button.pack(pady=10)
 
     def show_list(self):
         # Crea una ventana secundaria para mostrar la lista de juegos

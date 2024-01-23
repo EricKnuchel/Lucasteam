@@ -37,7 +37,7 @@ class Juegos:
             print("El juego ya existe")
 
         return alta
-    
+
     @classmethod
     def __str__(cls):
         return '\n'.join(str(juego) for juego in cls.lista_juegos)
@@ -61,11 +61,10 @@ class Juego:
         lista_atrib = [self.rank, self.name, self.plataf, self.year, self.genero, self.editor, self.v_na, self.v_eu,
                        self.v_jp, self.v_otras, self.v_glob]
         return lista_atrib
-    
+
     def __str__(self):
         return f"Juego(rank={self.rank}, name={self.name}, plataf={self.plataf}, year={self.year}, genero={self.genero}, " \
                f"editor={self.editor}, v_na={self.v_na}, v_eu={self.v_eu}, v_jp={self.v_jp}, v_otras={self.v_otras}, v_glob={self.v_glob})"
-
 
     # Este es un metodo de Python que se usa para definir el comportamiento de el operador de igualdad (==)
     def __eq__(self, other):
