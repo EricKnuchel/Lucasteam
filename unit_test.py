@@ -7,7 +7,7 @@ from app.crud.operaciones import delete_juego, update_juegos
 class TestJuegos(unittest.TestCase):
     def test_inser_data(self):
         test_data = ['1', 'Example Game', 'PlatformX', '2022', 'Action', 'PublisherY', '10.0', '5.0', '2.0', '1.0',
-                     '18.0']
+                     '18.0'] 
 
         Juegos.inser_data(test_data)
 
@@ -22,7 +22,7 @@ class TestDeleteJuego(unittest.TestCase):
 
     def test_delete_juego_exitoso(self):
         # Supongamos que 'id_a_eliminar' es un ID válido que quieres probar
-        resultado = delete_juego(14)
+        resultado = delete_juego(99)
         self.assertTrue(resultado, "La eliminación debería ser exitosa")
 
     def test_delete_juego_fallido(self):
@@ -35,7 +35,7 @@ class TestUpdateJuegos(unittest.TestCase):
 
     def test_update_juegos_exitoso(self):
         # Supongamos que estos son valores válidos que quieres probar
-        id_a_actualizar = 12
+        id_a_actualizar = 10
         nombre_nuevo = "Nuevo Nombre x"
         plataforma_nueva = "Nueva Plataforma"
         year_nuevo = 2025

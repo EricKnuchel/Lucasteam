@@ -3,7 +3,13 @@ import mysql
 from app.estructura.catalogo import Juegos, Juego
 from app.db.conexion_db import conectar_a_mysql
 
-
+def jeugos_exists(cursor, nombre):
+    sql = "select id from Juegos where nombre = '%s'"
+    cursor.execute(sql, (nombre,))
+    return cursor.fetchone() is not None
+    
+    
+    
 def leer_datos():
     conn = conectar_a_mysql()
     try:
@@ -12,27 +18,13 @@ def leer_datos():
             next(lectura)
             for l in lectura:
                 lista = l
-                # Juegos.inser_data(lista)
-                """if conn:
-                    try:
-                        cursor = conn.cursor()
-                        #sql = "SELECT id FROM Juegos"
-                        #cursor.execute(sql)
-                        #lista_id = cursor.fetchall()
-                        #j = Juego(lista[0], lista[1], lista[2], lista[3], lista[4], lista[5], lista[6], lista[7], lista[8], lista[9], lista[10])
-                        
-                        #if Juegos.alta_juego(j):
-                        sql = "INSERT INTO Juegos (nombre, plataforma, year, genero, publisher, V_NA, V_EU, V_JP, V_other, V_Global) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                        val = (lista[1], lista[2], lista[3], lista[4], lista[5], lista[6], lista[7], lista[8], lista[9], lista[10])
-                        
-                        cursor.execute(sql,val)
-                        
-                        conn.commit()
-                        
-                        cursor.close()
-                    except mysql.connector.Error as e:
-                        print(f"Error de conexión: {e}")"""
                 Juegos.inser_data(lista)
+                nombre_game = lista[1]
+                if not jeugos_exists(conn.cursor(),nombre_game):
+                    sql = "INSERT INTO Juegos (nombre, plataforma, year, genero, publisher, V_NA, V_EU, V_JP, V_other, V_Global) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                    val = (lista[1], lista[2], lista[3], lista[4], lista[5], lista[6], lista[7], lista[8], lista[9], lista[10])
+                    conn.cursor().execute(sql,val)
+                    conn.commit()
 
     except FileNotFoundError:
         print("Archivo no encontrado")
@@ -45,7 +37,3 @@ def leer_datos():
     finally:
         conn.close()
         print("Conexion a DB cerrada")
-
-
-def insert_data_db():
-    pass
