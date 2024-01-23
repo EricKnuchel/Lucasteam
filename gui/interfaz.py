@@ -119,6 +119,7 @@ class Ventana:
                                "Mindscape", "Infogrames"]
         editor_combobox = ttk.Combobox(window, textvariable=manual_editor, values=manual_editor_lista, state="readonly")
         editor_combobox.pack()
+        
 
         def update_juegos_wrapper():
             try:
