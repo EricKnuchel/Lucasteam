@@ -41,7 +41,3 @@ def leer_datos():
     finally:
         cursor.close()
         conn.close()
-
-
-def insert_data_db():
-    pass
