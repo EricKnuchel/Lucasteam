@@ -26,10 +26,10 @@ class Ventana:
 
         # show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", command=Juegos.show_games_siglo_xx)
         # show_xx.pack(pady=10)
-        
+
         show_db_button = Button(self.master, text="Mostrar Lista de Juegos (DB)", command=self.show_list_db)
         show_db_button.pack(pady=10)
-        
+
         show_genero_button = Button(self.master, text="Mostrar Lista filtrada por género", command=self.insert_genero)
         show_genero_button.pack(pady=10)
 
@@ -124,26 +124,25 @@ class Ventana:
              manual_genero.get(), manual_editor.get(), manual_ventas_na_e.get(), manual_ventas_eu_e.get(),
              manual_ventas_jp_e.get(), manual_ventas_ov_e.get(), manual_ventas_vg_e.get()]))
         manual_button.place(x=105, y=320)
-        
+
     def insert_genero(self):
         window = Tk()
         window.title("Filtrar Juegos por Género")
         window.resizable(0, 0)
         window.configure(bg='#FF9EA0')
         window.geometry("200x100")
-        
+
         genero_l = Label(window, text="Genero", bg='#FF9EA0')
         genero_l.pack()
         genero = StringVar(window)
         genero_lista = ["Sports", "Racing", "Role-Playing", "Puzzle", "Platform", "Misc", "Shooter",
-                               "Simulation", "Action", "Fighting", "Adventure", "Strategy"]
+                        "Simulation", "Action", "Fighting", "Adventure", "Strategy"]
         genero.set(genero_lista[0])
         genero_combobox = ttk.Combobox(window, textvariable=genero, values=genero_lista, state="readonly")
         genero_combobox.pack()
-        
-        manual_button = Button(window, text="Filtrar", command= lambda: self.show_list_genero(genero.get()))
-        manual_button.place(x=10, y=50)
 
+        manual_button = Button(window, text="Filtrar", command=lambda: self.show_list_genero(genero.get()))
+        manual_button.place(x=10, y=50)
 
     def show_list(self):
         # Crea una ventana secundaria para mostrar la lista de juegos
@@ -172,7 +171,7 @@ class Ventana:
 
         # Empaqueta el Treeview en la ventana secundaria
         tree.pack(expand=True, fill="both")
-        
+
     def show_list_db(self):
         # Crea una ventana secundaria para mostrar la lista de juegos
         window = Toplevel(self.master)
@@ -201,9 +200,9 @@ class Ventana:
 
         # Empaqueta el Treeview en la ventana secundaria
         tree.pack(expand=True, fill="both")
-        
+
     def show_list_genero(self, g):
-        
+
         # Crea una ventana secundaria para mostrar la lista de juegos
         window = Toplevel(self.master)
         window.title(f"Lista de Juegos (Género: {g}")

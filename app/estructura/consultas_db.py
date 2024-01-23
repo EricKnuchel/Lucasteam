@@ -1,6 +1,7 @@
 from app.db.conexion_db import conectar_a_mysql
 import mysql
 
+
 def show_genere(gen):
     conn = conectar_a_mysql()
     if conn:
@@ -8,7 +9,7 @@ def show_genere(gen):
             cursor = conn.cursor()
             sql = 'SELECT id, nombre, plataforma, year, genero, publisher FROM Juegos WHERE genero LIKE %s'
             val = (gen, )
-            cursor.execute(sql,val)
+            cursor.execute(sql, val)
             lista_gen = cursor.fetchall()
             
             return lista_gen

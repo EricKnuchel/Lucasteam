@@ -1,16 +1,18 @@
 import mysql.connector
+
+
 # import pymysql
 
 def conectar_a_mysql():
     try:
         # Crear una conexión
-        conn = mysql.connector.connect(            
-            user = 'root',
-            password = 'aeCB243cFb1aeagHf5cgecHDB35a3haB',
-            host = 'viaduct.proxy.rlwy.net',
-            database = 'railway',
-            port = '52288'
-            )
+        conn = mysql.connector.connect(
+            user='root',
+            password='aeCB243cFb1aeagHf5cgecHDB35a3haB',
+            host='viaduct.proxy.rlwy.net',
+            database='railway',
+            port='52288'
+        )
 
         if conn.is_connected():
             print("Conexión exitosa")
@@ -20,14 +22,15 @@ def conectar_a_mysql():
         print(f"Error de conexión: {e}")
         return None
 
+
 def create_table():
     conn = conectar_a_mysql()
     if conn:
         try:
             cursor = conn.cursor()
-            
-            #cursor.execute("Drop table Juegos")
-            
+
+            # cursor.execute("Drop table Juegos")
+
             command = """
             CREATE TABLE IF NOT EXISTS Juegos(
                 id INT NOT NULL AUTO_INCREMENT,
@@ -50,4 +53,3 @@ def create_table():
         finally:
             cursor.close()
             conn.close()
-            
