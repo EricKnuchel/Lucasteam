@@ -191,14 +191,6 @@ class Ventana:
             return x
         else:
             return "Error: No se pudo obtener la información para el ID especificado."
-        # show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", command=Juegos.show_games_siglo_xx)
-        # show_xx.pack(pady=10)
-
-        show_db_button = Button(self.master, text="Mostrar Lista de Juegos (DB)", command=self.show_list_db)
-        show_db_button.pack(pady=10)
-
-        show_genero_button = Button(self.master, text="Mostrar Lista filtrada por género", command=self.insert_genero)
-        show_genero_button.pack(pady=10)
 
     def insert_data(self):
         window = Tk()

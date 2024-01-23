@@ -1,8 +1,9 @@
 import unittest
 from app.estructura.catalogo import Juego, Juegos
-from app.crud.operaciones import delete_juego, update_juegos, listar_juegos_db
-from app.db.consultas_db import show_genere
-from app.db.consultas_db import conectar_a_mysql
+from app.crud.operaciones import delete_juego, update_juegos, listar_juegos_db 
+from app.db.consultas_db import conectar_a_mysql,show_genere, show_siglo_xx
+from app.crud.operaciones import delete_juego, update_juegos
+
 
 
 # Prueba unitaria de la funsion insert_data
@@ -24,13 +25,13 @@ class TestDeleteJuego(unittest.TestCase):
 
     def test_delete_juego_exitoso(self):
         # Supongamos que 'id_a_eliminar' es un ID válido que quieres probar
-        resultado = delete_juego(66) # cambiar ide siempre que se use la pruea unitaria
+        resultado = delete_juego(34) # cambiar ide siempre que se use la pruea unitaria
         self.assertTrue(resultado, "La eliminación debería ser exitosa")
 
     def test_delete_juego_fallido(self):
         # Supongamos que 'id_inexistente' es un ID que no existe y quieres probar la caída
         resultado = delete_juego(17000)
-        self.assertFalse(resultado, "La eliminación debería fallar ya que el juego no existe")
+        self.assertFalse(resultado, "La eliminación debería fallar ya que el juego no existe") 
 
 
 class TestUpdateJuegos(unittest.TestCase):
@@ -105,8 +106,21 @@ class TestFiltrarGenero(unittest.TestCase):
         
         for g in lista_gen:
             self.assertEqual(len(g),num_campos_esperados)
-        
-    
+
+
+class TestShowSigloXX(unittest.TestCase):
+    def test_show_siglo_xx_success(self):
+        # Llama a la función
+        result = show_siglo_xx()
+
+        # Verifica que la función devuelva una lista no vacía
+        self.assertTrue(result)
+
+        # Verifica que todos los datos estan entre 1900 y 1999
+        for juego in result:
+            year = juego[3]
+            self.assertTrue(1900 <= year <= 1999)
+            self.assertEqual(len(juego),11)
 
 
 if __name__ == '__main__':
