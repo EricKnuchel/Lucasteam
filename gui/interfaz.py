@@ -119,6 +119,7 @@ class Ventana:
                                "Mindscape", "Infogrames"]
         editor_combobox = ttk.Combobox(window, textvariable=manual_editor, values=manual_editor_lista, state="readonly")
         editor_combobox.pack()
+        
 
         def update_juegos_wrapper():
             try:
@@ -301,7 +302,7 @@ class Ventana:
         genero_combobox.pack()
         
         manual_button = Button(window, text="Filtrar", command= lambda: self.show_list_genero(genero.get()))
-        manual_button.place(x=10, y=50)
+        manual_button.pack(pady=10)
 
 
     def show_list(self):
