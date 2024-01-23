@@ -191,6 +191,14 @@ class Ventana:
             return x
         else:
             return "Error: No se pudo obtener la información para el ID especificado."
+        # show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", command=Juegos.show_games_siglo_xx)
+        # show_xx.pack(pady=10)
+
+        show_db_button = Button(self.master, text="Mostrar Lista de Juegos (DB)", command=self.show_list_db)
+        show_db_button.pack(pady=10)
+
+        show_genero_button = Button(self.master, text="Mostrar Lista filtrada por género", command=self.insert_genero)
+        show_genero_button.pack(pady=10)
 
     def insert_data(self):
         window = Tk()
@@ -299,9 +307,10 @@ class Ventana:
         genero.set(genero_lista[0])
         genero_combobox = ttk.Combobox(window, textvariable=genero, values=genero_lista, state="readonly")
         genero_combobox.pack()
+        
+        manual_button = Button(window, text="Filtrar", command= lambda: self.show_list_genero(genero.get()))
+        manual_button.place(x=10, y=50)
 
-        manual_button = Button(window, text="Filtrar", command=lambda: self.show_list_genero(genero.get()))
-        manual_button.place(x=80, y=50)
 
     def show_list(self):
         # Crea una ventana secundaria para mostrar la lista de juegos

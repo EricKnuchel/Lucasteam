@@ -25,7 +25,9 @@ def create_table():
     if conn:
         try:
             cursor = conn.cursor()
-
+            
+            #cursor.execute("Drop table Juegos")
+            
             command = """
             CREATE TABLE IF NOT EXISTS Juegos(
                 id INT NOT NULL AUTO_INCREMENT,
@@ -48,3 +50,4 @@ def create_table():
         finally:
             cursor.close()
             conn.close()
+            
