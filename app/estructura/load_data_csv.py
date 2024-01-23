@@ -12,7 +12,7 @@ def leer_datos():
             next(lectura)
             for l in lectura:
                 lista = l
-                #Juegos.inser_data(lista)
+                # Juegos.inser_data(lista)
                 """if conn:
                     try:
                         cursor = conn.cursor()
@@ -32,6 +32,7 @@ def leer_datos():
                         cursor.close()
                     except mysql.connector.Error as e:
                         print(f"Error de conexión: {e}")"""
+                Juegos.inser_data(lista)
 
     except FileNotFoundError:
         print("Archivo no encontrado")
@@ -44,8 +45,7 @@ def leer_datos():
     finally:
         conn.close()
         print("Conexion a DB cerrada")
-                
-        
-        
+
+
 def insert_data_db():
     pass

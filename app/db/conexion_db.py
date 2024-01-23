@@ -1,8 +1,6 @@
 import mysql.connector
 
 
-# import pymysql
-
 def conectar_a_mysql():
     try:
         # Crear una conexión
@@ -15,7 +13,6 @@ def conectar_a_mysql():
         )
 
         if conn.is_connected():
-            print("Conexión exitosa")
             return conn
 
     except mysql.connector.Error as e:
@@ -28,9 +25,9 @@ def create_table():
     if conn:
         try:
             cursor = conn.cursor()
-
-            # cursor.execute("Drop table Juegos")
-
+            
+            #cursor.execute("Drop table Juegos")
+            
             command = """
             CREATE TABLE IF NOT EXISTS Juegos(
                 id INT NOT NULL AUTO_INCREMENT,
@@ -53,3 +50,4 @@ def create_table():
         finally:
             cursor.close()
             conn.close()
+            

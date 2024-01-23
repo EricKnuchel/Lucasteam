@@ -1,7 +1,6 @@
 from app.db.conexion_db import conectar_a_mysql
 import mysql
 
-
 def listar_juegos_db():
     conn = conectar_a_mysql()
     if conn:
@@ -11,7 +10,7 @@ def listar_juegos_db():
             cursor.execute(sql)
             lista_j = cursor.fetchall()
             return lista_j
-
+        
         except mysql.connector.Error as e:
             print(f"Error de conexión: {e}")
         finally:
