@@ -78,3 +78,11 @@ def validar_ventas(v):
 
     correcto = True
     return correcto, v
+
+def eliminar_datos_db(d):
+    add = False
+    if d[3] == 'N/A':
+        return add
+    else:
+        add = True
+        return add

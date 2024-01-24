@@ -2,9 +2,28 @@ import csv
 import pandas as pd
 from app.estructura.catalogo import Juegos
 from app.db.conexion_db import conectar_a_mysql
+from app.validaciones.validaciones import eliminar_datos_db
 
 
-def leer_datos():
+def load_list():
+    try:
+        with open('datos/vgsales.csv', 'r') as f:
+            lectura = csv.reader(f)
+            next(lectura)
+            for l in lectura:
+                lista = l
+                Juegos.inser_data(lista)
+
+    except FileNotFoundError:
+        print("Archivo no encontrado")
+    except IOError:
+        print("Error al leer el fichero.")
+    except csv.Error:
+        print("Error al leer los datos del CSV")
+    except Exception as e:
+        print(f"Ha ocurrido un error: {e}")
+
+def load_db():
     conn = conectar_a_mysql()
 
     if conn:
@@ -19,18 +38,16 @@ def leer_datos():
             lectura = csv.reader(f)
             next(lectura)
             for l in lectura:
-                lista = l
-                Juegos.inser_data(lista)
-
                 if num_dat[0] == 0:
-                    sql = "INSERT INTO Juegos (nombre, plataforma, year, genero, publisher, V_NA, V_EU, V_JP, V_other, V_Global) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                    val = (
-                        lista[1], lista[2], lista[3], lista[4], lista[5], lista[6], lista[7], lista[8], lista[9],
-                        lista[10])
+                    if eliminar_datos_db(l):
+                        sql = "INSERT INTO Juegos (nombre, plataforma, year, genero, publisher, V_NA, V_EU, V_JP, V_other, V_Global) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                        val = (
+                            l[1], l[2], l[3], l[4], l[5], l[6], l[7], l[8], l[9],
+                            l[10])
 
-                    cursor.execute(sql, val)
+                        cursor.execute(sql, val)
 
-                    conn.commit()
+                        conn.commit()
 
     except FileNotFoundError:
         print("Archivo no encontrado")
