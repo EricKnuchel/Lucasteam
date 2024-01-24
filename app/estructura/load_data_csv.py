@@ -1,4 +1,5 @@
 import csv
+import pandas as pd
 from app.estructura.catalogo import Juegos
 from app.db.conexion_db import conectar_a_mysql
 from app.validaciones.validaciones import eliminar_datos_db
@@ -59,3 +60,10 @@ def load_db():
     finally:
         cursor.close()
         conn.close()
+
+
+def load_dataframe():
+    data = pd.read_csv('datos/vgsales.csv')
+    return data
+
+    

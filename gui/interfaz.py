@@ -1,7 +1,9 @@
 from tkinter import ttk, Tk, Button, Toplevel, Label, Entry, StringVar, Canvas
+from pandasgui import show
 from app.estructura.catalogo import Juegos
 from app.db.consultas_db import show_genere, show_siglo_xx
 from app.crud.operaciones import delete_juego, update_juegos, get_info_for_id, listar_juegos_db
+from app.pandas.consultas_pd import listado_pandas
 
 
 class Ventana:
@@ -10,10 +12,10 @@ class Ventana:
         self.master.title("Video Game Sales")
         self.master.resizable(0, 0)
         self.master.configure(bg='#FF9EA0')
-        self.master.geometry("300x350")
+        self.master.geometry("300x400")
         self.master.eval(f'tk::PlaceWindow {str(self.master)} center')
         # Crear un Canvas que ocupe toda la ventana
-        canvas = Canvas(self.master, width=300, height=350)
+        canvas = Canvas(self.master, width=300, height=400)
         canvas.pack()
 
         # Definir los colores para el degradado
@@ -21,11 +23,11 @@ class Ventana:
         color2 = "#87BAE1"  # Segundo color
 
         # Dibujar el degradado
-        for i in range(350):
+        for i in range(400):
             # Calcular el color en cada posición vertical
-            r = int((1 - i / 350) * int(color1[1:3], 16) + (i / 350) * int(color2[1:3], 16))
-            g = int((1 - i / 350) * int(color1[3:5], 16) + (i / 350) * int(color2[3:5], 16))
-            b = int((1 - i / 350) * int(color1[5:7], 16) + (i / 350) * int(color2[5:7], 16))
+            r = int((1 - i / 400) * int(color1[1:3], 16) + (i / 400) * int(color2[1:3], 16))
+            g = int((1 - i / 400) * int(color1[3:5], 16) + (i / 400) * int(color2[3:5], 16))
+            b = int((1 - i / 400) * int(color1[5:7], 16) + (i / 400) * int(color2[5:7], 16))
             color = f"#{r:02X}{g:02X}{b:02X}"
 
             # Dibujar una línea vertical del color correspondiente
@@ -43,20 +45,25 @@ class Ventana:
         show_button = Button(self.master, text="Mostrar Lista de Juegos", width=25, command=self.show_list)
         show_button.place(x=60, y=80)
 
-        show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", width=25, command=self.show_list_xx)
-        show_xx.place(x=60, y=120)
-
         show_db_button = Button(self.master, text="Mostrar Lista de Juegos (DB)", width=25, command=self.show_list_db)
-        show_db_button.place(x=60, y=160)
+        show_db_button.place(x=60, y=120)
+        
+        show_df_button = Button(self.master, text="Mostrar Lista de Juegos (Panda)", width=25, command=self.data_frame)
+        show_df_button.place(x=60, y=160)
+        
+        show_xx = Button(self.master, text="Mostrar Juegos Siglo XX", width=25, command=self.show_list_xx)
+        show_xx.place(x=60, y=200)
+        
 
         show_genero_button = Button(self.master, text="Filtrar por género", width=25, command=self.insert_genero)
-        show_genero_button.place(x=60, y=200)
+        show_genero_button.place(x=60, y=240)
 
         delete = Button(self.master, text="Update Juego", width=25, command=self.update)
-        delete.place(x=60, y=240)
+        delete.place(x=60, y=280)
 
         delete = Button(self.master, text="Delete Juego", width=25, command=self.delete)
-        delete.place(x=60, y=280)
+        delete.place(x=60, y=320)
+        
 
     def update(self):
         window = Tk()
@@ -430,6 +437,40 @@ class Ventana:
         # Empaqueta el Treeview en la ventana secundaria
         tree.pack(expand=True, fill="both")
 
+    def data_frame(self):
+        data = listado_pandas()
+        gui = show(data, title='Tabla de Datos Pandas')
+    
+    # def data_frame(self):
+    #     window = Tk()
+    #     window.title("Pandas")
+    #     window.resizable(0, 0)
+    #     window.configure(bg='#FF9EA0')
+    #     window.geometry("800x600")
+
+    #     # Crear el Treeview
+    #     tree = ttk.Treeview(window)
+    #     tree["columns"] = listado_pandas().columns
+    #     tree.heading("#0", text="Index")
+        
+    #     # Contador para asignar identificadores únicos a las columnas
+    #     col_counter = 1
+    #     for col in listado_pandas().columns:
+    #         col_id = f"col{col_counter}"
+    #         tree.heading(col_id, text=col, anchor="center")
+    #         tree.column(col_id, anchor="center", width=100)
+    #         col_counter += 1
+
+    #     # Insertar los datos en el Treeview
+    #     for index, row in listado_pandas().iterrows():
+    #         tree.insert("", "end", text=index, values=tuple(row))
+
+    #     # Mostrar el Treeview
+    #     tree.pack(pady=20)
+
+    #     # Mostrar el Treeview
+    #     tree.pack(pady=20)
+    #     window.mainloop()
 
 def run_gui():
     root = Tk()
