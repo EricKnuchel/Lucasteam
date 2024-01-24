@@ -26,14 +26,14 @@ def create_table():
         try:
             cursor = conn.cursor()
 
-            # cursor.execute("Drop table Juegos")
+            #cursor.execute("Drop table Juegos")
 
             command = """
             CREATE TABLE IF NOT EXISTS Juegos(
                 id INT NOT NULL AUTO_INCREMENT,
                 nombre Varchar(255) NOT NULL,
                 plataforma Varchar(255),
-                year INT(4) NOT NULL,
+                year INT(4),
                 genero Varchar(255),
                 publisher VARCHAR(255),
                 V_NA Double NOT NULL,
