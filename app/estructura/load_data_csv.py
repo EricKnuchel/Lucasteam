@@ -23,6 +23,7 @@ def load_list():
     except Exception as e:
         print(f"Ha ocurrido un error: {e}")
 
+
 def load_db():
     conn = conectar_a_mysql()
 
@@ -65,5 +66,3 @@ def load_db():
 def load_dataframe():
     data = pd.read_csv('datos/vgsales.csv')
     return data
-
-    

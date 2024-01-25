@@ -26,7 +26,7 @@ def create_table():
         try:
             cursor = conn.cursor()
 
-            #cursor.execute("Drop table Juegos")
+            # cursor.execute("Drop table Juegos")
 
             command = """
             CREATE TABLE IF NOT EXISTS Juegos(

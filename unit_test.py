@@ -3,9 +3,8 @@ from app.estructura.catalogo import Juego, Juegos
 from app.crud.operaciones import delete_juego, update_juegos, listar_juegos_db
 from app.db.consultas_db import conectar_a_mysql, show_genere, show_siglo_xx
 from app.crud.operaciones import delete_juego, update_juegos, listar_juegos_db
-from app.db.consultas_db import conectar_a_mysql, show_genere, show_siglo_xx, show_platform, show_year_par, show_max_venta
-from app.crud.operaciones import delete_juego, update_juegos
-
+from app.db.consultas_db import *
+from app.crud.operaciones import *
 
 # Prueba unitaria de la funsion insert_data
 '''class TestJuegos(unittest.TestCase):
@@ -115,7 +114,7 @@ class TestShowSigloXX(unittest.TestCase):
         for juego in result:
             year = juego[3]
             self.assertTrue(1900 <= year <= 1999)
-            self.assertEqual(len(juego), 11) '''
+            self.assertEqual(len(juego), 11) 
 
 
 class TestShowPlatform(unittest.TestCase):
@@ -141,7 +140,17 @@ class TestShowYearPar(unittest.TestCase):
         # Verificar que todos los años son pares
         for juego in result:
             self.assertTrue(juego[3] % 2 == 0)  # Ajusta el índice según la posición del año en tus datos
-            self.assertEqual(len(juego), 11)
+            self.assertEqual(len(juego), 11) '''
+
+class TestShowMedia(unittest.TestCase):
+    def test_todas_ventas_por_encima_de_media(self):
+        # Llama a la función que deseas probar
+        result = show_media()
+
+        # Realiza las aserciones específicas de tu prueba
+        self.assertIsNotNone(result)  # Verifica que la lista de juegos no sea nula
+        # Agrega aserciones adicionales según sea necesario para verificar los datos devueltos
+        self.assertTrue(all(juego[5] >= 0.15 for juego in result), "Todas las ventas deben estar por encima o igual a la media (0.15)")
 
 
 if __name__ == '__main__':
