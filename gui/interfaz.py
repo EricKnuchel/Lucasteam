@@ -4,6 +4,7 @@ from app.estructura.catalogo import Juegos
 from app.db.consultas_db import *
 from app.crud.operaciones import *
 from app.pandas.consultas_pd import listado_pandas
+from app.validaciones.validaciones import validar_year_par
 
 
 class Ventana:
@@ -584,7 +585,7 @@ class Ventana:
         tree = ttk.Treeview(window)
         self.setup_treeview(tree)
 
-        juegos_par = show_year_par()
+        juegos_par = validar_year_par(show_year_par())
 
         # Inserta los datos en el Treeview
         for juego in juegos_par:
@@ -603,11 +604,10 @@ class Ventana:
         # Empaqueta el Treeview en la ventana secundaria
         tree.pack(expand=True, fill="both")
 
-    def mas_vemdidos(self):
+    def mas_vendidos(self):       
         window = Toplevel(self.master)
         window.title("Juegos mas vendidos Global")
         window.resizable(0, 0)
-        window.minsize(0, 0)
         window.configure(bg='#FF9EA0')
 
         # Creación del Treeview en la ventana secundaria
