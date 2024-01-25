@@ -132,8 +132,8 @@ def show_max_venta():
 
     return juegos_max_venta
 
+
 def show_max_venta_regional(region):
-    
     conn = conectar_a_mysql()  # Asumiendo que tienes una función llamada conectar_a_mysql()
 
     if conn:

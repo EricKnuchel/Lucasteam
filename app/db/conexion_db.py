@@ -1,15 +1,19 @@
 import mysql.connector
+from configparser import ConfigParser
 
 
 def conectar_a_mysql():
+    config = ConfigParser()
+    config.read('app\\config.properties')
+
     try:
         # Crear una conexión
         conn = mysql.connector.connect(
-            user='root',
-            password='aeCB243cFb1aeagHf5cgecHDB35a3haB',
-            host='viaduct.proxy.rlwy.net',
-            database='railway',
-            port='52288'
+            user=config.get('MySQL', 'mysql_user'),
+            password=config.get('MySQL', 'mysql_password'),
+            host=config.get('MySQL', 'mysql_host'),
+            database=config.get('MySQL', 'mysql_database'),
+            port=config.get('MySQL', 'mysql_port')
         )
 
         if conn.is_connected():
@@ -26,7 +30,7 @@ def create_table():
         try:
             cursor = conn.cursor()
 
-            #cursor.execute("Drop table Juegos")
+            # cursor.execute("Drop table Juegos")
 
             command = """
             CREATE TABLE IF NOT EXISTS Juegos(
