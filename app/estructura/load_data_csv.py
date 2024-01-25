@@ -7,18 +7,19 @@ from app.validaciones.validaciones import eliminar_datos_db
 from exception.exception import DemoException
 
 logger = logging.getLogger("").getChild(__name__)
+
 def load_list():
     try:
-        with open('datos/prueba.csv', 'r') as f:
-            read = f.read()
-            if read == '':
-                raise DemoException("El fichero csv esta vacio")
-            else:
-                lectura = csv.reader(f)
-                next(lectura)
-                for l in lectura:
-                    lista = l
-                    Juegos.inser_data(lista)
+        with open('datos/vgsales.csv', 'r') as f:
+            # read = f.read()
+            # if read == '':
+            #     raise DemoException("El fichero csv esta vacio")
+            # else:
+            lectura = csv.reader(f)
+            next(lectura)
+            for l in lectura:
+                lista = l
+                Juegos.inser_data(lista)
 
     except FileNotFoundError:
         logger.error("Archivo no encontrado")

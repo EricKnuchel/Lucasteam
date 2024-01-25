@@ -153,8 +153,7 @@ class TestShowYearPar(unittest.TestCase):
         
         lista_year_par_valid = validar_year_par(lista_year_par)
         
-        for y_p in lista_year_par_valid:
-            self.assertNotIn(dato_erroneo, lista_year_par_valid, f"El elemento incorrrecto se encuentra en la lista")
+        self.assertNotIn(dato_erroneo, lista_year_par_valid, f"El elemento incorrrecto se encuentra en la lista")
             
             
 class TestShowMaxVentasRegional(unittest.TestCase):
