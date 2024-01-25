@@ -128,7 +128,7 @@ class Ventana:
             show_media_button.place(x=35, y=325)
 
             show_max_vent_button = Button(self.root, text="Juegos más vendidos Global", width=25,
-                                          command=self.mas_vemdidos)
+                                          command=self.mas_vendidos)
             show_max_vent_button.place(x=35, y=365)
 
             show_max_vent_button = Button(self.root, text="Juegos más vendidos Regional", width=25,
