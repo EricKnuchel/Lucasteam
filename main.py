@@ -4,8 +4,8 @@ from gui.interfaz import run_gui
 
 
 def main():
-    create_table()
-    leer_datos()
+    # create_table()
+    # leer_datos()
     run_gui()
 
 
