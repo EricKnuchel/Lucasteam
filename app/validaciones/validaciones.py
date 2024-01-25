@@ -1,5 +1,7 @@
 import re
+import logging
 
+logger = logging.getLogger("").getChild(__name__)
 
 def juego_repetido(j, l_j):
     repetido = False
@@ -16,16 +18,20 @@ def campos_correctos(j):
     lista_atrib = j.listar_atrib()
     caracteres_no_permitidos = r"%$#@¨{}[]\^`"
     punto_coma_guion = [";", "_"]
+    ident = j.rank
     for a in lista_atrib:
         if str(a).isspace() or str(a) == "":
-            return correcto, print("No puede haber campos vacíos")
+            logger.info("No puede haber campos vacíos")
+            return correcto
 
         for i in punto_coma_guion:
             if i in str(a):
-                return correcto, print(f"{a} no puede contener '{i}'")
+                logger.info(f"{a} no puede contener '{i}'")
+                return correcto
 
         if re.search(f"[{re.escape(caracteres_no_permitidos)}]", str(a)):
-            return correcto, print(f"El elemento {a} contiene caracteres no perimitidos")
+            logger.info(f"El elemento {a} con id:{ident} contiene caracteres no perimitidos")
+            return correcto
 
     correcto = True
     return correcto
@@ -35,6 +41,7 @@ def validar_nombre(n):
     correcto = False
     letras_n = list(n)
     if len(letras_n) < 2:
+        logger.info("El nombre debe tener más de dos letras")
         return correcto, n
     else:
         n = n.capitalize()
@@ -53,7 +60,7 @@ def validar_ventas(v):
             vt = int(v[i])
 
             if vt < 0:
-                print("El número no puede ser negativo")
+                logger.info("El número no puede ser negativo")
                 return correcto, v
             else:
                 v[i] = vt
@@ -63,15 +70,15 @@ def validar_ventas(v):
                 vt = float(v[i])
 
                 if vt < 0:
-                    print("El número no puede ser negativo")
+                    logger.info("El número no puede ser negativo")
                     return correcto, v
                 else:
                     vt = format(vt, ".2f")
                     v[i] = vt
             except ValueError:
-                print("No es un número")
+                logger.error("No es un número")
             except Exception as e:
-                print(f"A orcurrido un error: {e}")
+                logger.error(f"A orcurrido un error: {e}")
                 return correcto, v
         i += 1
         salida = (i == top)
@@ -83,6 +90,7 @@ def validar_ventas(v):
 def eliminar_datos_db(d):
     add = False
     if d[3] == 'N/A':
+        logger.info(f"El juego con id {d[0]} tiene un año nulo")
         return add
     else:
         add = True
@@ -91,7 +99,7 @@ def eliminar_datos_db(d):
 def validar_year_par(year):
     for y in year:
         if y[3]%2 != 0:
-            print(f"Año impar encontrado en el elemento con id {y[0]}: Año = {y[3]}")
+            logger.info(f"Año impar encontrado en el elemento con id {y[0]}: Año = {y[3]}")
             year.remove(y)
             
     return year

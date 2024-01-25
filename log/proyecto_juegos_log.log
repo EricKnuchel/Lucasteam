@@ -1,0 +1,128 @@
+2024-01-25 13:58:01,621 - INFO - El elemento [Prototype] con id:1505 contiene caracteres no perimitidos
+2024-01-25 13:58:01,621 - ERROR - El juego (id:1505) no se ha agregado a la lista
+2024-01-25 13:58:01,661 - INFO - El elemento [Prototype] con id:1604 contiene caracteres no perimitidos
+2024-01-25 13:58:01,661 - ERROR - El juego (id:1604) no se ha agregado a la lista
+2024-01-25 13:58:01,669 - INFO - El elemento WarioWare, Inc.: Mega MicroGame$ con id:1628 contiene caracteres no perimitidos
+2024-01-25 13:58:01,669 - ERROR - El juego (id:1628) no se ha agregado a la lista
+2024-01-25 13:58:02,335 - INFO - El elemento [Prototype 2] con id:2576 contiene caracteres no perimitidos
+2024-01-25 13:58:02,335 - ERROR - El juego (id:2576) no se ha agregado a la lista
+2024-01-25 13:58:02,420 - INFO - El elemento [Prototype 2] con id:2742 contiene caracteres no perimitidos
+2024-01-25 13:58:02,420 - ERROR - El juego (id:2742) no se ha agregado a la lista
+2024-01-25 13:58:02,514 - INFO - El elemento WarioWare, Inc.: Mega Party Game$ con id:2890 contiene caracteres no perimitidos
+2024-01-25 13:58:02,514 - ERROR - El juego (id:2890) no se ha agregado a la lista
+2024-01-25 13:58:03,452 - INFO - El elemento Resident Evil Outbreak File #2 con id:3552 contiene caracteres no perimitidos
+2024-01-25 13:58:03,453 - ERROR - El juego (id:3552) no se ha agregado a la lista
+2024-01-25 13:58:10,802 - INFO - El elemento The Idolm@ster SP: Wandering Star / Perfect Sun / Missing Moon con id:7076 contiene caracteres no perimitidos
+2024-01-25 13:58:10,803 - ERROR - El juego (id:7076) no se ha agregado a la lista
+2024-01-25 13:58:11,179 - INFO - Steins;Gate no puede contener ';'
+2024-01-25 13:58:11,180 - ERROR - El juego (id:7320) no se ha agregado a la lista
+2024-01-25 13:58:11,994 - INFO - Steins;Gate no puede contener ';'
+2024-01-25 13:58:11,994 - ERROR - El juego (id:7765) no se ha agregado a la lista
+2024-01-25 13:58:13,009 - INFO - El elemento The Idolm@ster: Shiny Festa - Honey Sound / Funky Note / Groovy Tune con id:8269 contiene caracteres no perimitidos
+2024-01-25 13:58:13,009 - ERROR - El juego (id:8269) no se ha agregado a la lista
+2024-01-25 13:58:13,275 - INFO - El elemento Fate/Stay Night [Réalta Nua] con id:8350 contiene caracteres no perimitidos
+2024-01-25 13:58:13,275 - ERROR - El juego (id:8350) no se ha agregado a la lista
+2024-01-25 13:58:14,069 - INFO - El elemento The Idolm@ster 2 con id:8702 contiene caracteres no perimitidos
+2024-01-25 13:58:14,069 - ERROR - El juego (id:8702) no se ha agregado a la lista
+2024-01-25 13:58:14,623 - INFO - El elemento Guilty Gear X2 #Reload con id:8988 contiene caracteres no perimitidos
+2024-01-25 13:58:14,623 - ERROR - El juego (id:8988) no se ha agregado a la lista
+2024-01-25 13:58:15,454 - INFO - El elemento The IdolM@ster: One for All con id:9459 contiene caracteres no perimitidos
+2024-01-25 13:58:15,454 - ERROR - El juego (id:9459) no se ha agregado a la lista
+2024-01-25 13:58:16,431 - INFO - Hyperdimension Neptunia Re;Birth 3 no puede contener ';'
+2024-01-25 13:58:16,432 - ERROR - El juego (id:9969) no se ha agregado a la lista
+2024-01-25 13:58:17,276 - INFO - El elemento Grand Theft Auto: Mission Pack #1, London 1969 con id:10381 contiene caracteres no perimitidos
+2024-01-25 13:58:17,276 - ERROR - El juego (id:10381) no se ha agregado a la lista
+2024-01-25 13:58:17,278 - INFO - Robotics;Notes no puede contener ';'
+2024-01-25 13:58:17,279 - ERROR - El juego (id:10383) no se ha agregado a la lista
+2024-01-25 13:58:17,342 - INFO - El nombre debe tener m�s de dos letras
+2024-01-25 13:58:17,342 - ERROR - El juego (id:10418) no se ha agregado a la lista
+2024-01-25 13:58:17,681 - INFO - El elemento [Prototype 2] con id:10598 contiene caracteres no perimitidos
+2024-01-25 13:58:17,681 - ERROR - El juego (id:10598) no se ha agregado a la lista
+2024-01-25 13:58:18,635 - INFO - El elemento The $1 Pyramid con id:11094 contiene caracteres no perimitidos
+2024-01-25 13:58:18,635 - ERROR - El juego (id:11094) no se ha agregado a la lista
+2024-01-25 13:58:18,719 - INFO - Hyperdimension Neptunia Re;Birth 2 no puede contener ';'
+2024-01-25 13:58:18,720 - ERROR - El juego (id:11135) no se ha agregado a la lista
+2024-01-25 13:58:19,181 - INFO - Steins;Gate no puede contener ';'
+2024-01-25 13:58:19,181 - ERROR - El juego (id:11374) no se ha agregado a la lista
+2024-01-25 13:58:19,304 - INFO - Steins;Gate: Hiyoku Renri no Darling no puede contener ';'
+2024-01-25 13:58:19,305 - ERROR - El juego (id:11439) no se ha agregado a la lista
+2024-01-25 13:58:19,710 - INFO - El elemento The Idolm@ster con id:11645 contiene caracteres no perimitidos
+2024-01-25 13:58:19,711 - ERROR - El juego (id:11645) no se ha agregado a la lista
+2024-01-25 13:58:20,033 - INFO - El elemento The Idolm@ster: Live for You! con id:11798 contiene caracteres no perimitidos
+2024-01-25 13:58:20,033 - ERROR - El juego (id:11798) no se ha agregado a la lista
+2024-01-25 13:58:21,281 - INFO - Steins;Gate: Senkei Kousoku no Phonogram no puede contener ';'
+2024-01-25 13:58:21,281 - ERROR - El juego (id:12337) no se ha agregado a la lista
+2024-01-25 13:58:21,450 - INFO - Steins;Gate no puede contener ';'
+2024-01-25 13:58:21,450 - ERROR - El juego (id:12416) no se ha agregado a la lista
+2024-01-25 13:58:21,902 - INFO - Steins;Gate: Hiyoku Renri no Darling no puede contener ';'
+2024-01-25 13:58:21,902 - ERROR - El juego (id:12627) no se ha agregado a la lista
+2024-01-25 13:58:22,193 - INFO - El elemento Fate/Stay Night [Réalta Nua] con id:12756 contiene caracteres no perimitidos
+2024-01-25 13:58:22,194 - ERROR - El juego (id:12756) no se ha agregado a la lista
+2024-01-25 13:58:22,617 - INFO - Chaos;Child no puede contener ';'
+2024-01-25 13:58:22,617 - ERROR - El juego (id:12935) no se ha agregado a la lista
+2024-01-25 13:58:22,964 - INFO - El elemento The Idolm@ster: Dearly Stars con id:13070 contiene caracteres no perimitidos
+2024-01-25 13:58:22,964 - ERROR - El juego (id:13070) no se ha agregado a la lista
+2024-01-25 13:58:22,997 - INFO - Steins;Gate 0 no puede contener ';'
+2024-01-25 13:58:22,997 - ERROR - El juego (id:13083) no se ha agregado a la lista
+2024-01-25 13:58:23,095 - INFO - Steins;Gate 0 no puede contener ';'
+2024-01-25 13:58:23,095 - ERROR - El juego (id:13125) no se ha agregado a la lista
+2024-01-25 13:58:24,382 - INFO - Chaos;Head - Love Chu*Chu! no puede contener ';'
+2024-01-25 13:58:24,382 - ERROR - El juego (id:13687) no se ha agregado a la lista
+2024-01-25 13:58:24,976 - INFO - El elemento The Idolm@ster: Must Songs - Red Board / Blue Board con id:13938 contiene caracteres no perimitidos
+2024-01-25 13:58:24,976 - ERROR - El juego (id:13938) no se ha agregado a la lista
+2024-01-25 13:58:25,098 - INFO - Chaos;Head Noah no puede contener ';'
+2024-01-25 13:58:25,098 - ERROR - El juego (id:13988) no se ha agregado a la lista
+2024-01-25 13:58:25,983 - INFO - Chaos;Head - Love Chu*Chu! no puede contener ';'
+2024-01-25 13:58:25,983 - ERROR - El juego (id:14360) no se ha agregado a la lista
+2024-01-25 13:58:26,581 - INFO - El elemento Megpoid the Music# con id:14591 contiene caracteres no perimitidos
+2024-01-25 13:58:26,581 - ERROR - El juego (id:14591) no se ha agregado a la lista
+2024-01-25 13:58:26,816 - INFO - El elemento The IdolM@ster: Gravure For You! Vol. 6 con id:14681 contiene caracteres no perimitidos
+2024-01-25 13:58:26,816 - ERROR - El juego (id:14681) no se ha agregado a la lista
+2024-01-25 13:58:27,008 - INFO - El elemento The Battle of Yuu Yuu Hakusho: Shitou! Ankoku Bujutsukai! 120% con id:14754 contiene caracteres no perimitidos
+2024-01-25 13:58:27,008 - ERROR - El juego (id:14754) no se ha agregado a la lista
+2024-01-25 13:58:27,213 - INFO - Steins;Gate 0 no puede contener ';'
+2024-01-25 13:58:27,213 - ERROR - El juego (id:14823) no se ha agregado a la lista
+2024-01-25 13:58:27,640 - INFO - El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.1 con id:14975 contiene caracteres no perimitidos
+2024-01-25 13:58:27,640 - ERROR - El juego (id:14975) no se ha agregado a la lista
+2024-01-25 13:58:27,655 - INFO - El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.6 con id:14980 contiene caracteres no perimitidos
+2024-01-25 13:58:27,655 - ERROR - El juego (id:14980) no se ha agregado a la lista
+2024-01-25 13:58:27,764 - INFO - El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.9 con id:15019 contiene caracteres no perimitidos
+2024-01-25 13:58:27,764 - ERROR - El juego (id:15019) no se ha agregado a la lista
+2024-01-25 13:58:27,832 - INFO - Steins;Gate: Senkei Kousoku no Phonogram no puede contener ';'
+2024-01-25 13:58:27,832 - ERROR - El juego (id:15041) no se ha agregado a la lista
+2024-01-25 13:58:28,053 - INFO - Chaos;Head Noah no puede contener ';'
+2024-01-25 13:58:28,053 - ERROR - El juego (id:15117) no se ha agregado a la lista
+2024-01-25 13:58:28,578 - INFO - Robotics;Notes no puede contener ';'
+2024-01-25 13:58:28,579 - ERROR - El juego (id:15306) no se ha agregado a la lista
+2024-01-25 13:58:28,817 - INFO - El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.7 con id:15387 contiene caracteres no perimitidos
+2024-01-25 13:58:28,817 - ERROR - El juego (id:15387) no se ha agregado a la lista
+2024-01-25 13:58:29,021 - INFO - Steins;Gate: Hiyoku Renri no Darling no puede contener ';'
+2024-01-25 13:58:29,022 - ERROR - El juego (id:15460) no se ha agregado a la lista
+2024-01-25 13:58:29,054 - INFO - El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.5 con id:15472 contiene caracteres no perimitidos
+2024-01-25 13:58:29,054 - ERROR - El juego (id:15472) no se ha agregado a la lista
+2024-01-25 13:58:29,333 - INFO - El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.8 con id:15569 contiene caracteres no perimitidos
+2024-01-25 13:58:29,333 - ERROR - El juego (id:15569) no se ha agregado a la lista
+2024-01-25 13:58:29,636 - INFO - El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.2 con id:15679 contiene caracteres no perimitidos
+2024-01-25 13:58:29,637 - ERROR - El juego (id:15679) no se ha agregado a la lista
+2024-01-25 13:58:29,673 - INFO - Robotics;Notes no puede contener ';'
+2024-01-25 13:58:29,673 - ERROR - El juego (id:15692) no se ha agregado a la lista
+2024-01-25 13:58:29,736 - INFO - El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.3 con id:15714 contiene caracteres no perimitidos
+2024-01-25 13:58:29,736 - ERROR - El juego (id:15714) no se ha agregado a la lista
+2024-01-25 13:58:29,811 - INFO - El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.4 con id:15743 contiene caracteres no perimitidos
+2024-01-25 13:58:29,811 - ERROR - El juego (id:15743) no se ha agregado a la lista
+2024-01-25 13:58:29,995 - INFO - El elemento Memories Off #5: Encore con id:15809 contiene caracteres no perimitidos
+2024-01-25 13:58:29,995 - ERROR - El juego (id:15809) no se ha agregado a la lista
+2024-01-25 13:58:30,809 - INFO - El elemento Marginal #4: Idol of Supernova con id:16110 contiene caracteres no perimitidos
+2024-01-25 13:58:30,809 - ERROR - El juego (id:16110) no se ha agregado a la lista
+2024-01-25 13:58:30,936 - INFO - El elemento htoL#NiQ: The Firefly Diary con id:16164 contiene caracteres no perimitidos
+2024-01-25 13:58:30,936 - ERROR - El juego (id:16164) no se ha agregado a la lista
+2024-01-25 13:58:31,207 - INFO - Myself; Yourself no puede contener ';'
+2024-01-25 13:58:31,208 - ERROR - El juego (id:16268) no se ha agregado a la lista
+2024-01-25 13:58:31,226 - INFO - Chaos;Head Noah no puede contener ';'
+2024-01-25 13:58:31,226 - ERROR - El juego (id:16275) no se ha agregado a la lista
+2024-01-25 13:58:31,378 - INFO - Chaos;Child no puede contener ';'
+2024-01-25 13:58:31,378 - ERROR - El juego (id:16336) no se ha agregado a la lista
+2024-01-25 13:58:31,603 - INFO - Chaos;Child no puede contener ';'
+2024-01-25 13:58:31,604 - ERROR - El juego (id:16419) no se ha agregado a la lista
+2024-01-25 13:58:31,769 - INFO - El elemento Memories Off #5: Togireta Film con id:16470 contiene caracteres no perimitidos
+2024-01-25 13:58:31,769 - ERROR - El juego (id:16470) no se ha agregado a la lista

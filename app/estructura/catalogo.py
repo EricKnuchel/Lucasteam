@@ -1,5 +1,7 @@
 from app.validaciones import validaciones as val
+import logging
 
+logger = logging.getLogger("").getChild(__name__)
 
 class Juegos:
     lista_juegos = []
@@ -11,8 +13,7 @@ class Juegos:
         if Juegos.alta_juego(j):
             return cls.lista_juegos.append(j)
         else:
-            del j
-            print("El juego no se añadió a la lista")
+            logger.error(f"El juego (id:{j.rank}) no se ha agregado a la lista")
 
     @classmethod
     def alta_juego(cls, j):

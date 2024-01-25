@@ -74,7 +74,7 @@ class Ventana:
         show_media_button = Button(self.master, text="Juegos superior a la media EU", width=25, command=self.superior_a_media)
         show_media_button.place(x=60, y=440)
         
-        show_max_vent_button = Button(self.master, text="Juegos más vendidos Global", width=25, command=self.mas_vemdidos)
+        show_max_vent_button = Button(self.master, text="Juegos más vendidos Global", width=25, command=self.mas_vendidos)
         show_max_vent_button.place(x=60, y=480)
         
         show_max_vent_button = Button(self.master, text="Juegos más vendidos Regional", width=25, command=self.insert_region)
