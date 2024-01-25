@@ -13,7 +13,7 @@ class Juegos:
         if Juegos.alta_juego(j):
             return cls.lista_juegos.append(j)
         else:
-            logger.error(f"El juego (id:{j.rank}) no se ha agregado a la lista")
+            logger.warning(f"ID {j.rank}-El juego no se ha agregado a la lista")
 
     @classmethod
     def alta_juego(cls, j):
@@ -34,8 +34,6 @@ class Juegos:
                         j.v_otras = vent[3]
                         j.v_glob = vent[4]
                         alta = True
-        else:
-            print("El juego ya existe")
 
         return alta
 
