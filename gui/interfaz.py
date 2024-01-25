@@ -1,7 +1,7 @@
 from tkinter import ttk, Tk, Button, Toplevel, Label, Entry, StringVar, Canvas
 from pandasgui import show
 from app.estructura.catalogo import Juegos
-from app.db.consultas_db import show_genere, show_siglo_xx, show_platform, show_year_par
+from app.db.consultas_db import *
 from app.crud.operaciones import delete_juego, update_juegos, get_info_for_id, listar_juegos_db
 from app.pandas.consultas_pd import listado_pandas
 
@@ -12,10 +12,10 @@ class Ventana:
         self.master.title("Video Game Sales")
         self.master.resizable(0, 0)
         self.master.configure(bg='#FF9EA0')
-        self.master.geometry("300x500")
+        self.master.geometry("300x600")
         self.master.eval(f'tk::PlaceWindow {str(self.master)} center')
         # Crear un Canvas que ocupe toda la ventana
-        canvas = Canvas(self.master, width=300, height=350)
+        canvas = Canvas(self.master, width=300, height=600)
         canvas.pack()
 
         # Definir los colores para el degradado
@@ -23,15 +23,15 @@ class Ventana:
         color2 = "#87BAE1"  # Segundo color
 
         # Dibujar el degradado
-        for i in range(500):
+        for i in range(600):
             # Calcular el color en cada posición vertical
-            r = int((1 - i / 500) * int(color1[1:3], 16) + (i / 500) * int(color2[1:3], 16))
-            g = int((1 - i / 500) * int(color1[3:5], 16) + (i / 500) * int(color2[3:5], 16))
-            b = int((1 - i / 500) * int(color1[5:7], 16) + (i / 500) * int(color2[5:7], 16))
+            r = int((1 - i / 600) * int(color1[1:3], 16) + (i / 600) * int(color2[1:3], 16))
+            g = int((1 - i / 600) * int(color1[3:5], 16) + (i / 600) * int(color2[3:5], 16))
+            b = int((1 - i / 600) * int(color1[5:7], 16) + (i / 600) * int(color2[5:7], 16))
             color = f"#{r:02X}{g:02X}{b:02X}"
 
             # Dibujar una línea vertical del color correspondiente
-            canvas.create_line(0, i, 500, i, fill=color, width=1)
+            canvas.create_line(0, i, 600, i, fill=color, width=1)
 
         canvas.create_text(150, 15, text="Proyecto LucasSteam ©", font=('Arial', 12, 'bold'), fill='black')
         # Configuración de la ventana principal
@@ -63,19 +63,24 @@ class Ventana:
 
         delete = Button(self.master, text="Delete Juego", width=25, command=self.delete)
         delete.place(x=60, y=320)
+
+        show_platform_button = Button(self.master, text="Juegos Nintendo", width=25, command=self.show_platform)
+        show_platform_button.place(x=60, y=360)
+
+        show_par_button = Button(self.master, text="Juegos año par", width=25, command=self.show_year_par)
+        show_par_button.place(x=60, y=400)
+
+        show_media_button = Button(self.master, text="Juegos superior a la media EU", width=25, command=self.superior_a_media)
+        show_media_button.place(x=60, y=440)
         
-
-        show_platform_button = Button(self.master, text="Juegos Nintendo", width=25, command=self.show_platform)
-        show_platform_button.place(x=60, y=320)
-
-        show_par_button = Button(self.master, text="Juegos año par", width=25, command=self.show_year_par)
-        show_par_button.place(x=60, y=360)
-
-        show_platform_button = Button(self.master, text="Juegos Nintendo", width=25, command=self.show_platform)
-        show_platform_button.place(x=60, y=320)
-
-        show_par_button = Button(self.master, text="Juegos año par", width=25, command=self.show_year_par)
-        show_par_button.place(x=60, y=360)
+        show_max_vent_button = Button(self.master, text="Juegos más vendidos Global", width=25, command=self.mas_vemdidos)
+        show_max_vent_button.place(x=60, y=480)
+        
+        show_max_vent_button = Button(self.master, text="Juegos más vendidos Regional", width=25, command=self.insert_region)
+        show_max_vent_button.place(x=60, y=520)
+        
+        show_genero_button = Button(self.master, text="Mostrar juegos por editor", width=25, command=self.insert_editor)
+        show_genero_button.place(x=60, y=560)
 
     def update(self):
         window = Tk()
@@ -126,7 +131,7 @@ class Ventana:
         manual_editor_l.pack()
         manual_editor = StringVar(window)
         manual_editor.set("Ninguna")
-        manual_editor_lista = ["Desconocido", "Nintendo", "Microsoft Game Studios", "Take-Two Interactive",
+        manual_editor_lista = ["Nintendo", "Microsoft Game Studios", "Take-Two Interactive",
                                "Sony Computer Entertainment", "Activision", "Ubisoft", "Bethesda Softworks",
                                "Electronic Arts", "Sega", "Square Enix", "Atari", "505 Games", "Capcom",
                                "GT Interactive", "Konami Digital Entertainment", "Namco Bandai Games",
@@ -319,8 +324,6 @@ class Ventana:
         genero_combobox.pack()
 
         manual_button = Button(window, text="Filtrar", command=lambda: self.show_list_genero(genero.get()))
-
-        manual_button = Button(window, text="Filtrar", command=lambda: self.show_list_genero(genero.get()))
         manual_button.pack(pady=10)
 
     def show_list(self):
@@ -419,6 +422,26 @@ class Ventana:
         for col in columns:
             tree.heading(col, text=col)
             tree.column(col, anchor="center", width=60)  # aqui se ajusta el año de la tabla
+            
+    def setup_treeview_ventas(self, tree):
+        columns = ("Rank", "Name", "Platform", "Year", "Publisher", "V_EU")
+
+        tree["columns"] = columns
+        tree["show"] = "headings"
+
+        for col in columns:
+            tree.heading(col, text=col)
+            tree.column(col, anchor="center", width=60)  # aqui se ajusta el año de la tabla
+            
+    def setup_treeview_ventas_regional(self, tree, region):
+        columns = ("Rank", "Name", "Platform", "Year", "Publisher", region)
+
+        tree["columns"] = columns
+        tree["show"] = "headings"
+
+        for col in columns:
+            tree.heading(col, text=col)
+            tree.column(col, anchor="center", width=60)
 
     def show_list_xx(self):
         # Crea una ventana secundaria para mostrar la lista de juegos del siglo XX
@@ -451,42 +474,14 @@ class Ventana:
         # Empaqueta el Treeview en la ventana secundaria
         tree.pack(expand=True, fill="both")
 
+
     def data_frame(self):
         data = listado_pandas()
         gui = show(data, title='Tabla de Datos Pandas')
-    
-    # def data_frame(self):
-    #     window = Tk()
-    #     window.title("Pandas")
-    #     window.resizable(0, 0)
-    #     window.configure(bg='#FF9EA0')
-    #     window.geometry("800x600")
-
-    #     # Crear el Treeview
-    #     tree = ttk.Treeview(window)
-    #     tree["columns"] = listado_pandas().columns
-    #     tree.heading("#0", text="Index")
-        
-    #     # Contador para asignar identificadores únicos a las columnas
-    #     col_counter = 1
-    #     for col in listado_pandas().columns:
-    #         col_id = f"col{col_counter}"
-    #         tree.heading(col_id, text=col, anchor="center")
-    #         tree.column(col_id, anchor="center", width=100)
-    #         col_counter += 1
-
-    #     # Insertar los datos en el Treeview
-    #     for index, row in listado_pandas().iterrows():
-    #         tree.insert("", "end", text=index, values=tuple(row))
-
-    #     # Mostrar el Treeview
-    #     tree.pack(pady=20)
-
-    #     # Mostrar el Treeview
-    #     tree.pack(pady=20)
-    #     window.mainloop()
+ 
+ 
     def show_platform(self):
-        # Crea una ventana secundaria para mostrar la lista de juegos del siglo XX
+
         window = Toplevel(self.master)
         window.title("Juegos desarrollados por Nintendo")
         window.resizable(0, 0)
@@ -496,7 +491,6 @@ class Ventana:
         tree = ttk.Treeview(window)
         self.setup_treeview(tree)
 
-        # Llama a la función show_siglo_xx para obtener los juegos del siglo XX
         juegos_platform = show_platform()
 
         # Inserta los datos en el Treeview
@@ -517,7 +511,6 @@ class Ventana:
         tree.pack(expand=True, fill="both")
 
     def show_year_par(self):
-        # Crea una ventana secundaria para mostrar la lista de juegos del siglo XX
         window = Toplevel(self.master)
         window.title("Juegos lanzados en año par")
         window.resizable(0, 0)
@@ -527,7 +520,6 @@ class Ventana:
         tree = ttk.Treeview(window)
         self.setup_treeview(tree)
 
-        # Llama a la función show_siglo_xx para obtener los juegos del siglo XX
         juegos_par = show_year_par()
 
         # Inserta los datos en el Treeview
@@ -547,6 +539,180 @@ class Ventana:
         # Empaqueta el Treeview en la ventana secundaria
         tree.pack(expand=True, fill="both")
 
+    def mas_vemdidos(self):       
+            window = Toplevel(self.master)
+            window.title("Juegos mas vendidos Global")
+            window.resizable(0, 0)
+            window.configure(bg='#FF9EA0')
+
+            # Creación del Treeview en la ventana secundaria
+            tree = ttk.Treeview(window)
+            self.setup_treeview_ventas(tree)
+
+
+            max_vent = show_max_venta()
+
+            # Inserta los datos en el Treeview
+            for juego in max_vent:
+                row = (
+                juego[0], juego[1], juego[2], juego[3],
+                juego[4], juego[5] # corregir
+                )
+                tree.insert("", "end", values=row)
+
+            # Configuración del scrollbar vertical
+            scrollbar = ttk.Scrollbar(window, orient="vertical", command=tree.yview)
+            scrollbar.pack(side="right", fill="y")
+
+            tree.configure(yscrollcommand=scrollbar.set)
+
+            # Empaqueta el Treeview en la ventana secundaria
+            tree.pack(expand=True, fill="both")
+    
+    def superior_a_media(self):
+            window = Toplevel(self.master)
+            window.title("Juegos superior a la media en Europa")
+            window.resizable(0, 0)
+            window.configure(bg='#FF9EA0')
+
+            # Creación del Treeview en la ventana secundaria
+            tree = ttk.Treeview(window)
+            self.setup_treeview_ventas(tree)
+
+
+            max_vent = show_media()
+
+            # Inserta los datos en el Treeview
+            for juego in max_vent:
+                row = (
+                    juego[0], juego[1], juego[2], juego[3],
+                    juego[4], juego[5] 
+                )
+                tree.insert("", "end", values=row)
+
+            # Configuración del scrollbar vertical
+            scrollbar = ttk.Scrollbar(window, orient="vertical", command=tree.yview)
+            scrollbar.pack(side="right", fill="y")
+
+            tree.configure(yscrollcommand=scrollbar.set)
+
+            # Empaqueta el Treeview en la ventana secundaria
+            tree.pack(expand=True, fill="both")
+            
+    def insert_region(self):
+        window = Tk()
+        window.title("Filtrar Juegos por Region")
+        window.resizable(0, 0)
+        window.configure(bg='#FF9EA0')
+        window.geometry("200x100")
+
+        region_l = Label(window, text="Región", bg='#FF9EA0')
+        region_l.pack()
+        region = StringVar(window)
+        region_lista = ["V_NA", "V_EU", "V_JP", "V_Other"]
+        region.set(region_lista[0])
+        genero_combobox = ttk.Combobox(window, textvariable=region, values=region_lista, state="readonly")
+        genero_combobox.pack()
+
+        manual_button = Button(window, text="Filtrar", command=lambda: self.show_list_region(region.get()))
+        manual_button.pack(pady=10)
+        
+        
+    def show_list_region(self, region):
+
+        # Crea una ventana secundaria para mostrar la lista de juegos
+        window = Toplevel(self.master)
+        window.title(f"Juegos mas vendidos en (Región: {region}")
+        window.resizable(0, 0)
+        window.configure(bg='#FF9EA0')
+
+        # Creación del Treeview en la ventana secundaria
+        tree = ttk.Treeview(window)
+        self.setup_treeview_ventas_regional(tree, region)
+
+        # Inserta los datos en el Treeview
+        lista_generos = show_max_venta_regional(region)
+        for genero in lista_generos:
+            row = (
+                genero[0], genero[1], genero[2], genero[3],
+                genero[4], genero[5]
+            )
+            tree.insert("", "end", values=row)
+
+        # Configuración del scrollbar vertical
+        scrollbar = ttk.Scrollbar(window, orient="vertical", command=tree.yview)
+        scrollbar.pack(side="right", fill="y")
+
+        tree.configure(yscrollcommand=scrollbar.set)
+
+        # Empaqueta el Treeview en la ventana secundaria
+        tree.pack(expand=True, fill="both")
+        
+    def insert_editor(self):
+        window = Tk()
+        window.title("Filtrar Juegos por Editor")
+        window.resizable(0, 0)
+        window.configure(bg='#FF9EA0')
+        window.geometry("200x100")
+
+        editor_l = Label(window, text="Editor", bg='#FF9EA0')
+        editor_l.pack()
+        editor = StringVar(window)
+        editor_lista = ["Unknown","Nintendo", "Microsoft Game Studios", "Take-Two Interactive",
+                        "Sony Computer Entertainment", "Activision", "Ubisoft", "Bethesda Softworks",
+                        "Electronic Arts", "Sega", "Square Enix", "Atari", "505 Games", "Capcom",
+                        "GT Interactive", "Konami Digital Entertainment", "Namco Bandai Games",
+                        "Warner Bros. Interactive Entertainment", "Majesco Entertainment", "Codemasters",
+                        "RedOctane", "THQ", "Fox Interactive", "Universal Interactive", "LucasArts",
+                        "Virgin Interactive", "Palcom", "Hasbro Interactive", "Vivendi Games", "NCSoft",
+                        "Deep Silver", "Arena Entertainment", "Valve Software", "ASCII Entertainment",
+                        "Mindscape", "Infogrames"]
+        editor.set(editor_lista[0])
+        editor_combobox = ttk.Combobox(window, textvariable=editor, values=editor_lista, state="readonly")
+        editor_combobox.pack()
+
+        filter_button = Button(window, text="Filtrar", command=lambda: self.show_list_editor(editor.get()))
+        filter_button.pack(pady=10)
+            
+    def show_list_editor(self, e):
+        # Crea una ventana secundaria para mostrar la lista de juegos por editor
+        window = Toplevel(self.master)
+        window.title(f"Lista de Juegos (Editor: {e}")
+        window.resizable(0, 0)
+        window.configure(bg='#FF9EA0')
+
+        # Creación del Treeview en la ventana secundaria
+        tree = ttk.Treeview(window)
+        self.setup_editor_treeview(tree)
+
+        # Inserta los datos en el Treeview
+        lista_editor = show_editor(e)
+        for juego in lista_editor:
+            row = (
+                juego[0], juego[1], juego[2]
+            )
+            tree.insert("", "end", values=row)
+
+        # Configuración del scrollbar vertical
+        scrollbar = ttk.Scrollbar(window, orient="vertical", command=tree.yview)
+        scrollbar.pack(side="right", fill="y")
+
+        tree.configure(yscrollcommand=scrollbar.set)
+
+        # Empaqueta el Treeview en la ventana secundaria
+        tree.pack(expand=True, fill="both")
+
+    def setup_editor_treeview(self, tree):
+        columns = ("Rank", "Name", "Publisher")
+
+        tree["columns"] = columns
+        tree["show"] = "headings"
+
+        for col in columns:
+            tree.heading(col, text=col)
+            tree.column(col, anchor="center", width=70)
+            
+        
 def run_gui():
     root = Tk()
     app = Ventana(root)
