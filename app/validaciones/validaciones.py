@@ -79,6 +79,7 @@ def validar_ventas(v):
     correcto = True
     return correcto, v
 
+
 def eliminar_datos_db(d):
     add = False
     if d[3] == 'N/A':
@@ -86,3 +87,11 @@ def eliminar_datos_db(d):
     else:
         add = True
         return add
+    
+def validar_year_par(year):
+    for y in year:
+        if y[3]%2 != 0:
+            print(f"Año impar encontrado en el elemento con id {y[0]}: Año = {y[3]}")
+            year.remove(y)
+            
+    return year
