@@ -116,7 +116,6 @@ def show_max_venta():
             cursor = conn.cursor()
             cursor.execute(query)
             juegos_max_venta = cursor.fetchall()
-            print(juegos_max_venta)
             return juegos_max_venta
 
         except mysql.connector.Error as e:
@@ -133,7 +132,34 @@ def show_max_venta():
 
     return juegos_max_venta
 
+def show_max_venta_regional(region):
+    
+    conn = conectar_a_mysql()  # Asumiendo que tienes una función llamada conectar_a_mysql()
 
+    if conn:
+
+        juegos_max_venta = []
+
+        try:
+            query = f"SELECT id, nombre, plataforma, year, publisher, {region} FROM Juegos ORDER BY {region} DESC LIMIT 5"
+            cursor = conn.cursor()
+            cursor.execute(query)
+            juegos_max_venta = cursor.fetchall()
+            return juegos_max_venta
+
+        except mysql.connector.Error as e:
+            print(f"Error al ejecutar la consulta: {e}")
+
+        finally:
+            cursor.close()
+            conn.close()
+
+    else:
+
+        print("No se pudo conectar a la base de datos.")
+        return []
+
+    return juegos_max_venta
 def show_media():
     conn = conectar_a_mysql()  # Asumiendo que tienes una función llamada conectar_a_mysql()
 
@@ -145,18 +171,17 @@ def show_media():
 
     try:
         # Calcular la media de las ventas globales
-        query_media = "SELECT AVG(v_global) FROM Juegos"
+        query_media = "SELECT AVG(V_EU) FROM Juegos"
         cursor_media = conn.cursor()
         cursor_media.execute(query_media)
         media = cursor_media.fetchone()[0]
 
         # Seleccionar los juegos por encima de la media
-        query_juegos_por_encima_de_media = "SELECT id, nombre, plataforma, year, publisher, v_global FROM Juegos WHERE v_global > %s"
+        query_juegos_por_encima_de_media = "SELECT id, nombre, plataforma, year, publisher, V_EU FROM Juegos WHERE V_EU > %s"
         cursor = conn.cursor()
         cursor.execute(query_juegos_por_encima_de_media, (media,))
         juegos_media = cursor.fetchall()
-        print(juegos_media)
-        return juegos_media
+        # return juegos_media
 
     except mysql.connector.Error as e:
         print(f"Error al ejecutar la consulta: {e}")
@@ -168,4 +193,19 @@ def show_media():
 
     return juegos_media
 
-show_media()
+def show_editor(e):
+    conn = conectar_a_mysql()
+    if conn:
+        try:
+            cursor = conn.cursor()
+            sql = 'SELECT id, nombre, publisher FROM Juegos WHERE publisher LIKE %s'
+            val = (e,)
+            cursor.execute(sql, val)
+            lista_gen = cursor.fetchall()
+
+            return lista_gen
+        except mysql.connector.Error as e:
+            print(f"Error de conexión: {e}")
+        finally:
+            cursor.close()
+            conn.close()
