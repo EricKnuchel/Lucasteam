@@ -1,7 +1,7 @@
 from tkinter import ttk, Tk, Button, Toplevel, Label, Entry, StringVar, Canvas
 from pandasgui import show
 from app.estructura.catalogo import Juegos
-from app.db.consultas_db import show_genere, show_siglo_xx
+from app.db.consultas_db import show_genere, show_siglo_xx, show_platform, show_year_par
 from app.crud.operaciones import delete_juego, update_juegos, get_info_for_id, listar_juegos_db
 from app.pandas.consultas_pd import listado_pandas
 
@@ -12,10 +12,10 @@ class Ventana:
         self.master.title("Video Game Sales")
         self.master.resizable(0, 0)
         self.master.configure(bg='#FF9EA0')
-        self.master.geometry("300x400")
+        self.master.geometry("300x500")
         self.master.eval(f'tk::PlaceWindow {str(self.master)} center')
         # Crear un Canvas que ocupe toda la ventana
-        canvas = Canvas(self.master, width=300, height=400)
+        canvas = Canvas(self.master, width=300, height=350)
         canvas.pack()
 
         # Definir los colores para el degradado
@@ -23,15 +23,15 @@ class Ventana:
         color2 = "#87BAE1"  # Segundo color
 
         # Dibujar el degradado
-        for i in range(400):
+        for i in range(500):
             # Calcular el color en cada posición vertical
-            r = int((1 - i / 400) * int(color1[1:3], 16) + (i / 400) * int(color2[1:3], 16))
-            g = int((1 - i / 400) * int(color1[3:5], 16) + (i / 400) * int(color2[3:5], 16))
-            b = int((1 - i / 400) * int(color1[5:7], 16) + (i / 400) * int(color2[5:7], 16))
+            r = int((1 - i / 500) * int(color1[1:3], 16) + (i / 500) * int(color2[1:3], 16))
+            g = int((1 - i / 500) * int(color1[3:5], 16) + (i / 500) * int(color2[3:5], 16))
+            b = int((1 - i / 500) * int(color1[5:7], 16) + (i / 500) * int(color2[5:7], 16))
             color = f"#{r:02X}{g:02X}{b:02X}"
 
             # Dibujar una línea vertical del color correspondiente
-            canvas.create_line(0, i, 370, i, fill=color, width=1)
+            canvas.create_line(0, i, 500, i, fill=color, width=1)
 
         canvas.create_text(150, 15, text="Proyecto LucasSteam ©", font=('Arial', 12, 'bold'), fill='black')
         # Configuración de la ventana principal
@@ -64,6 +64,18 @@ class Ventana:
         delete = Button(self.master, text="Delete Juego", width=25, command=self.delete)
         delete.place(x=60, y=320)
         
+
+        show_platform_button = Button(self.master, text="Juegos Nintendo", width=25, command=self.show_platform)
+        show_platform_button.place(x=60, y=320)
+
+        show_par_button = Button(self.master, text="Juegos año par", width=25, command=self.show_year_par)
+        show_par_button.place(x=60, y=360)
+
+        show_platform_button = Button(self.master, text="Juegos Nintendo", width=25, command=self.show_platform)
+        show_platform_button.place(x=60, y=320)
+
+        show_par_button = Button(self.master, text="Juegos año par", width=25, command=self.show_year_par)
+        show_par_button.place(x=60, y=360)
 
     def update(self):
         window = Tk()
@@ -307,6 +319,8 @@ class Ventana:
         genero_combobox.pack()
 
         manual_button = Button(window, text="Filtrar", command=lambda: self.show_list_genero(genero.get()))
+
+        manual_button = Button(window, text="Filtrar", command=lambda: self.show_list_genero(genero.get()))
         manual_button.pack(pady=10)
 
     def show_list(self):
@@ -471,6 +485,67 @@ class Ventana:
     #     # Mostrar el Treeview
     #     tree.pack(pady=20)
     #     window.mainloop()
+    def show_platform(self):
+        # Crea una ventana secundaria para mostrar la lista de juegos del siglo XX
+        window = Toplevel(self.master)
+        window.title("Juegos desarrollados por Nintendo")
+        window.resizable(0, 0)
+        window.configure(bg='#FF9EA0')
+
+        # Creación del Treeview en la ventana secundaria
+        tree = ttk.Treeview(window)
+        self.setup_treeview(tree)
+
+        # Llama a la función show_siglo_xx para obtener los juegos del siglo XX
+        juegos_platform = show_platform()
+
+        # Inserta los datos en el Treeview
+        for juego in juegos_platform:
+            row = (
+                juego[0], juego[1], juego[2], juego[3],
+                juego[4], juego[5]
+            )
+            tree.insert("", "end", values=row)
+
+        # Configuración del scrollbar vertical
+        scrollbar = ttk.Scrollbar(window, orient="vertical", command=tree.yview)
+        scrollbar.pack(side="right", fill="y")
+
+        tree.configure(yscrollcommand=scrollbar.set)
+
+        # Empaqueta el Treeview en la ventana secundaria
+        tree.pack(expand=True, fill="both")
+
+    def show_year_par(self):
+        # Crea una ventana secundaria para mostrar la lista de juegos del siglo XX
+        window = Toplevel(self.master)
+        window.title("Juegos lanzados en año par")
+        window.resizable(0, 0)
+        window.configure(bg='#FF9EA0')
+
+        # Creación del Treeview en la ventana secundaria
+        tree = ttk.Treeview(window)
+        self.setup_treeview(tree)
+
+        # Llama a la función show_siglo_xx para obtener los juegos del siglo XX
+        juegos_par = show_year_par()
+
+        # Inserta los datos en el Treeview
+        for juego in juegos_par:
+            row = (
+                juego[0], juego[1], juego[2], juego[3],
+                juego[4], juego[5]
+            )
+            tree.insert("", "end", values=row)
+
+        # Configuración del scrollbar vertical
+        scrollbar = ttk.Scrollbar(window, orient="vertical", command=tree.yview)
+        scrollbar.pack(side="right", fill="y")
+
+        tree.configure(yscrollcommand=scrollbar.set)
+
+        # Empaqueta el Treeview en la ventana secundaria
+        tree.pack(expand=True, fill="both")
 
 def run_gui():
     root = Tk()

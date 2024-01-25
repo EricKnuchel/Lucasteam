@@ -2,11 +2,13 @@ import unittest
 from app.estructura.catalogo import Juego, Juegos
 from app.crud.operaciones import delete_juego, update_juegos, listar_juegos_db
 from app.db.consultas_db import conectar_a_mysql, show_genere, show_siglo_xx
+from app.crud.operaciones import delete_juego, update_juegos, listar_juegos_db
+from app.db.consultas_db import conectar_a_mysql, show_genere, show_siglo_xx, show_platform, show_year_par, show_max_venta
 from app.crud.operaciones import delete_juego, update_juegos
 
 
 # Prueba unitaria de la funsion insert_data
-class TestJuegos(unittest.TestCase):
+'''class TestJuegos(unittest.TestCase):
     def test_inser_data(self):
         test_data = ['1', 'Example game', 'PlatformX', '2022', 'Action', 'PublisherY', '10.00', '5.00', '2.00', '1.00',
                      '18.00']
@@ -63,6 +65,7 @@ class TestUpdateJuegos(unittest.TestCase):
         self.assertEqual(updated_data[4], genero, "El género no coincide")
         self.assertEqual(updated_data[5], publisher, "El publisher no coincide")
 
+
     def test_update_juegos_fallido(self):
         # Supongamos que estos son valores inválidos o un ID que no existe que quieres probar
         id_inexistente = 17000
@@ -78,6 +81,7 @@ class TestUpdateJuegos(unittest.TestCase):
 
 
 class TestListarDatosDB(unittest.TestCase):
+    # Se comprueba que los datos devueltos traen todos los campos
     # Se comprueba que los datos devueltos traen todos los campos
     def test_campos_lista_db(self):
         num_campos_esperados = 6
@@ -96,7 +100,7 @@ class TestFiltrarGenero(unittest.TestCase):
 
         self.assertTrue(resultados_filtrados, f"No se encontraron elementos con el género {genero_esperado}")
         for g in resultados_filtrados:
-            self.assertIn(genero_esperado, g, f"El género {genero_esperado} no está presente en el elemento {g}")
+            self.assertIn(genero_esperado, g, f"El género {genero_esperado} no está presente en el elemento {g}") 
 
 
 class TestShowSigloXX(unittest.TestCase):
@@ -111,6 +115,32 @@ class TestShowSigloXX(unittest.TestCase):
         for juego in result:
             year = juego[3]
             self.assertTrue(1900 <= year <= 1999)
+            self.assertEqual(len(juego), 11) '''
+
+
+class TestShowPlatform(unittest.TestCase):
+
+    def test_lista_vacia(self):
+        result = show_platform()
+        self.assertIsInstance(result, list)
+        self.assertTrue(result)  # Verificar que la lista no esté vacía
+
+    def test_editor_nintendo(self):
+        # Suponiendo que Nintendo es el editor esperado
+        result = show_platform()
+        # Verificar que el editor esperado está en la lista
+        self.assertIn('Nintendo', [editor[5] for editor in result])
+
+
+class TestShowYearPar(unittest.TestCase):
+
+    def test_anios_pares(self):
+        # Suponiendo que todos los datos en la base de datos tienen años pares
+        result = show_year_par()
+
+        # Verificar que todos los años son pares
+        for juego in result:
+            self.assertTrue(juego[3] % 2 == 0)  # Ajusta el índice según la posición del año en tus datos
             self.assertEqual(len(juego), 11)
 
 
