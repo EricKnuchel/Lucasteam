@@ -9,10 +9,10 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s [%(leveln
 
 
 def main():
-    #create_table()
-    #load_db()
+    create_table()
+    load_db()
     load_list()
-    #run_gui()
+    run_gui()
 
 if __name__ == '__main__':
     main()

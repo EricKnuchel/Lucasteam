@@ -7,7 +7,6 @@ from app.validaciones.validaciones import eliminar_datos_db
 from exception.exception import DemoException
 
 logger = logging.getLogger("").getChild(__name__)
-logger.setLevel(logging.INFO)
 def load_list():
     try:
         with open('datos/prueba.csv', 'r') as f:
@@ -23,15 +22,11 @@ def load_list():
 
     except FileNotFoundError:
         logger.error("Archivo no encontrado")
-        logger.debug("Archivo no encontrado")
     except IOError as io:
         logger.error(f"Error:{io}")
-        logger.debug(f"Error:{io}")
     except csv.Error:
         logger.error("Error al leer los datos del CSV")
-        logger.debug("Error al leer los datos del CSV")
     except Exception as e:
-        logger.debug(e)
         logger.error(e)
 
 def load_db():
