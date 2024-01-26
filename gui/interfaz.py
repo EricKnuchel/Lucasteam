@@ -155,33 +155,33 @@ class Ventana:
             # Botones de esta ventana
             show_db_button = Button(self.root, text="Mostrar Lista de Juegos (DB)", width=25, command=self.show_list_db)
             show_xx = Button(self.root, text="Mostrar Juegos Siglo XX", width=25, command=self.show_list_xx)
-            show_genero_button = Button(self.root, text="Filtrar por género", width=25, command=self.insert_genero)
-            delete = Button(self.root, text="Update Juego", width=25, command=self.update)
+            show_filt_genero_button = Button(self.root, text="Filtrar por género", width=25, command=self.insert_genero)
+            update = Button(self.root, text="Update Juego", width=25, command=self.update)
             delete = Button(self.root, text="Delete Juego", width=25, command=self.delete)
             show_platform_button = Button(self.root, text="Juegos Nintendo", width=25, command=self.show_platform)
             show_par_button = Button(self.root, text="Juegos año par", width=25, command=self.show_year_par)
             show_media_button = Button(self.root, text="Juegos superior a la media EU", width=25,
                                        command=self.superior_a_media)
-            show_max_vent_button = Button(self.root, text="Juegos más vendidos Global", width=25,
+            show_max_vent_button_g = Button(self.root, text="Juegos más vendidos Global", width=25,
                                           command=self.mas_vendidos)
-            show_max_vent_button = Button(self.root, text="Juegos más vendidos Regional", width=25,
+            show_max_vent_button_r = Button(self.root, text="Juegos más vendidos Regional", width=25,
                                           command=self.insert_region)
-            show_genero_button = Button(self.root, text="Mostrar juegos por editor", width=25,
+            show_editor_button = Button(self.root, text="Mostrar juegos por editor", width=25,
                                         command=self.insert_editor)
 
             # sistema de posiciones de los botones y el titulo
             titulo_1.place(x=30, y=10)
             show_db_button.place(x=35, y=45)
             show_xx.place(x=35, y=85)
-            show_genero_button.place(x=35, y=125)
-            delete.place(x=35, y=165)
+            show_filt_genero_button.place(x=35, y=125)
+            update.place(x=35, y=165)
             delete.place(x=35, y=205)
             show_platform_button.place(x=35, y=245)
             show_par_button.place(x=35, y=285)
             show_media_button.place(x=35, y=325)
-            show_max_vent_button.place(x=35, y=365)
-            show_max_vent_button.place(x=35, y=405)
-            show_genero_button.place(x=35, y=445)
+            show_max_vent_button_g.place(x=35, y=365)
+            show_max_vent_button_r.place(x=35, y=405)
+            show_editor_button.place(x=35, y=445)
 
     def update(self):
         """_summary_
