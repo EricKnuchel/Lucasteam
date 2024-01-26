@@ -68,7 +68,7 @@ class Ventana:
 
         # sistema de posiciones del titulo y los radio button 
         titulo_init.place(x=5, y=10)
-        radio_button_l.place(x=20, y=40)
+        radio_button_l.place(x=10, y=40)
         radio_button_lista.place(x=30, y=90)
         radio_button_db.place(x=90, y=90)
         radio_button_panda.place(x=150, y=90)
