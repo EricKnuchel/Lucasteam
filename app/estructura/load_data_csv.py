@@ -11,15 +11,18 @@ logger = logging.getLogger("").getChild(__name__)
 def load_list():
     try:
         with open('datos/vgsales.csv', 'r') as f:
-            # read = f.read()
-            # if read == '':
-            #     raise DemoException("El fichero csv esta vacio")
-            # else:
-            lectura = csv.reader(f)
-            next(lectura)
-            for l in lectura:
-                lista = l
-                Juegos.inser_data(lista)
+            read = f.read()
+            if read == ' ':
+                raise DemoException("El fichero csv esta vacio")
+            else:
+                lectura = csv.reader(read)
+                print(lectura.line_num)
+                next(lectura)
+                print("Esta llenito")
+                for l in lectura:
+                    lista = l
+                    Juegos.inser_data(lista)
+                    print("Esta llenito")
 
     except FileNotFoundError:
         logger.error("Archivo no encontrado")
