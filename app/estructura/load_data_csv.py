@@ -10,12 +10,17 @@ logger = logging.getLogger("").getChild(__name__)
 def load_list():
     try:
         with open('datos/vgsales.csv', 'r') as f:
-            lectura = csv.reader(f)
-            next(lectura)
-            for l in lectura:
-                lista = l
-                Juegos.inser_data(lista)
-
+            read = f.read()
+            if not read.strip():
+                raise DemoException("El fichero esta vacio")
+            else:
+                f.seek(0)
+                lectura = csv.reader(f)
+                next(lectura)
+                
+                for l in lectura:
+                    Juegos.inser_data(l)
+            
     except FileNotFoundError:
         logger.error("Archivo no encontrado")
     except IOError as io:
@@ -39,11 +44,13 @@ def load_db():
 
         with open('datos/vgsales.csv', 'r') as f:
             read = f.read()
-            if read == '':
-                raise DemoException("El fichero csv esta vacio")
+            if not read.strip():
+                raise DemoException("El fichero esta vacio")
             else:
+                f.seek(0)
                 lectura = csv.reader(f)
                 next(lectura)
+                
                 for l in lectura:
                     if num_dat[0] == 0:
                         if eliminar_datos_db(l):
@@ -71,5 +78,4 @@ def load_db():
 
 def load_dataframe():
     data = pd.read_csv('datos/vgsales.csv')
-    print(data)
     return data

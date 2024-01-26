@@ -7,9 +7,9 @@ from gui.interfaz import run_gui
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s [%(levelname)s] %(message)s', filename='log/proyecto_juegos_log.log', filemode = "w")
 
 def main():
-    # create_table()
-    # load_db()
-    # load_list()
+    create_table()
+    load_db()
+    load_list()
     run_gui()
 
 
