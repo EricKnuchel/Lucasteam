@@ -1,1 +1,128 @@
-2024-01-26 08:36:12,524 - app.estructura.load_data_csv [ERROR] El fichero csv esta vacio
+2024-01-26 08:52:58,801 - app.validaciones.validaciones [INFO] ID 1505-El elemento [Prototype] contiene caracteres no perimitidos
+2024-01-26 08:52:58,801 - app.estructura.catalogo [WARNING] ID 1505-El juego no se ha agregado a la lista
+2024-01-26 08:52:58,812 - app.validaciones.validaciones [INFO] ID 1604-El elemento [Prototype] contiene caracteres no perimitidos
+2024-01-26 08:52:58,812 - app.estructura.catalogo [WARNING] ID 1604-El juego no se ha agregado a la lista
+2024-01-26 08:52:58,814 - app.validaciones.validaciones [INFO] ID 1628-El elemento WarioWare, Inc.: Mega MicroGame$ contiene caracteres no perimitidos
+2024-01-26 08:52:58,814 - app.estructura.catalogo [WARNING] ID 1628-El juego no se ha agregado a la lista
+2024-01-26 08:52:58,939 - app.validaciones.validaciones [INFO] ID 2576-El elemento [Prototype 2] contiene caracteres no perimitidos
+2024-01-26 08:52:58,939 - app.estructura.catalogo [WARNING] ID 2576-El juego no se ha agregado a la lista
+2024-01-26 08:52:58,968 - app.validaciones.validaciones [INFO] ID 2742-El elemento [Prototype 2] contiene caracteres no perimitidos
+2024-01-26 08:52:58,968 - app.estructura.catalogo [WARNING] ID 2742-El juego no se ha agregado a la lista
+2024-01-26 08:52:58,989 - app.validaciones.validaciones [INFO] ID 2890-El elemento WarioWare, Inc.: Mega Party Game$ contiene caracteres no perimitidos
+2024-01-26 08:52:58,989 - app.estructura.catalogo [WARNING] ID 2890-El juego no se ha agregado a la lista
+2024-01-26 08:52:59,100 - app.validaciones.validaciones [INFO] ID 3552-El elemento Resident Evil Outbreak File #2 contiene caracteres no perimitidos
+2024-01-26 08:52:59,100 - app.estructura.catalogo [WARNING] ID 3552-El juego no se ha agregado a la lista
+2024-01-26 08:53:00,028 - app.validaciones.validaciones [INFO] ID 7076-El elemento The Idolm@ster SP: Wandering Star / Perfect Sun / Missing Moon contiene caracteres no perimitidos
+2024-01-26 08:53:00,028 - app.estructura.catalogo [WARNING] ID 7076-El juego no se ha agregado a la lista
+2024-01-26 08:53:00,118 - app.validaciones.validaciones [INFO] ID 7320-Steins;Gate no puede contener ';'
+2024-01-26 08:53:00,118 - app.estructura.catalogo [WARNING] ID 7320-El juego no se ha agregado a la lista
+2024-01-26 08:53:00,296 - app.validaciones.validaciones [INFO] ID 7765-Steins;Gate no puede contener ';'
+2024-01-26 08:53:00,296 - app.estructura.catalogo [WARNING] ID 7765-El juego no se ha agregado a la lista
+2024-01-26 08:53:00,514 - app.validaciones.validaciones [INFO] ID 8269-El elemento The Idolm@ster: Shiny Festa - Honey Sound / Funky Note / Groovy Tune contiene caracteres no perimitidos
+2024-01-26 08:53:00,514 - app.estructura.catalogo [WARNING] ID 8269-El juego no se ha agregado a la lista
+2024-01-26 08:53:00,553 - app.validaciones.validaciones [INFO] ID 8350-El elemento Fate/Stay Night [Réalta Nua] contiene caracteres no perimitidos
+2024-01-26 08:53:00,554 - app.estructura.catalogo [WARNING] ID 8350-El juego no se ha agregado a la lista
+2024-01-26 08:53:00,708 - app.validaciones.validaciones [INFO] ID 8702-El elemento The Idolm@ster 2 contiene caracteres no perimitidos
+2024-01-26 08:53:00,708 - app.estructura.catalogo [WARNING] ID 8702-El juego no se ha agregado a la lista
+2024-01-26 08:53:00,839 - app.validaciones.validaciones [INFO] ID 8988-El elemento Guilty Gear X2 #Reload contiene caracteres no perimitidos
+2024-01-26 08:53:00,839 - app.estructura.catalogo [WARNING] ID 8988-El juego no se ha agregado a la lista
+2024-01-26 08:53:01,045 - app.validaciones.validaciones [INFO] ID 9459-El elemento The IdolM@ster: One for All contiene caracteres no perimitidos
+2024-01-26 08:53:01,045 - app.estructura.catalogo [WARNING] ID 9459-El juego no se ha agregado a la lista
+2024-01-26 08:53:01,297 - app.validaciones.validaciones [INFO] ID 9969-Hyperdimension Neptunia Re;Birth 3 no puede contener ';'
+2024-01-26 08:53:01,297 - app.estructura.catalogo [WARNING] ID 9969-El juego no se ha agregado a la lista
+2024-01-26 08:53:01,508 - app.validaciones.validaciones [INFO] ID 10381-El elemento Grand Theft Auto: Mission Pack #1, London 1969 contiene caracteres no perimitidos
+2024-01-26 08:53:01,509 - app.estructura.catalogo [WARNING] ID 10381-El juego no se ha agregado a la lista
+2024-01-26 08:53:01,510 - app.validaciones.validaciones [INFO] ID 10383-Robotics;Notes no puede contener ';'
+2024-01-26 08:53:01,510 - app.estructura.catalogo [WARNING] ID 10383-El juego no se ha agregado a la lista
+2024-01-26 08:53:01,525 - app.validaciones.validaciones [INFO] El nombre debe tener mas de dos letras
+2024-01-26 08:53:01,525 - app.estructura.catalogo [WARNING] ID 10418-El juego no se ha agregado a la lista
+2024-01-26 08:53:01,618 - app.validaciones.validaciones [INFO] ID 10598-El elemento [Prototype 2] contiene caracteres no perimitidos
+2024-01-26 08:53:01,619 - app.estructura.catalogo [WARNING] ID 10598-El juego no se ha agregado a la lista
+2024-01-26 08:53:01,877 - app.validaciones.validaciones [INFO] ID 11094-El elemento The $1 Pyramid contiene caracteres no perimitidos
+2024-01-26 08:53:01,877 - app.estructura.catalogo [WARNING] ID 11094-El juego no se ha agregado a la lista
+2024-01-26 08:53:01,906 - app.validaciones.validaciones [INFO] ID 11135-Hyperdimension Neptunia Re;Birth 2 no puede contener ';'
+2024-01-26 08:53:01,906 - app.estructura.catalogo [WARNING] ID 11135-El juego no se ha agregado a la lista
+2024-01-26 08:53:02,040 - app.validaciones.validaciones [INFO] ID 11374-Steins;Gate no puede contener ';'
+2024-01-26 08:53:02,040 - app.estructura.catalogo [WARNING] ID 11374-El juego no se ha agregado a la lista
+2024-01-26 08:53:02,079 - app.validaciones.validaciones [INFO] ID 11439-Steins;Gate: Hiyoku Renri no Darling no puede contener ';'
+2024-01-26 08:53:02,079 - app.estructura.catalogo [WARNING] ID 11439-El juego no se ha agregado a la lista
+2024-01-26 08:53:02,206 - app.validaciones.validaciones [INFO] ID 11645-El elemento The Idolm@ster contiene caracteres no perimitidos
+2024-01-26 08:53:02,206 - app.estructura.catalogo [WARNING] ID 11645-El juego no se ha agregado a la lista
+2024-01-26 08:53:02,288 - app.validaciones.validaciones [INFO] ID 11798-El elemento The Idolm@ster: Live for You! contiene caracteres no perimitidos
+2024-01-26 08:53:02,288 - app.estructura.catalogo [WARNING] ID 11798-El juego no se ha agregado a la lista
+2024-01-26 08:53:02,621 - app.validaciones.validaciones [INFO] ID 12337-Steins;Gate: Senkei Kousoku no Phonogram no puede contener ';'
+2024-01-26 08:53:02,621 - app.estructura.catalogo [WARNING] ID 12337-El juego no se ha agregado a la lista
+2024-01-26 08:53:02,680 - app.validaciones.validaciones [INFO] ID 12416-Steins;Gate no puede contener ';'
+2024-01-26 08:53:02,680 - app.estructura.catalogo [WARNING] ID 12416-El juego no se ha agregado a la lista
+2024-01-26 08:53:02,818 - app.validaciones.validaciones [INFO] ID 12627-Steins;Gate: Hiyoku Renri no Darling no puede contener ';'
+2024-01-26 08:53:02,818 - app.estructura.catalogo [WARNING] ID 12627-El juego no se ha agregado a la lista
+2024-01-26 08:53:02,911 - app.validaciones.validaciones [INFO] ID 12756-El elemento Fate/Stay Night [Réalta Nua] contiene caracteres no perimitidos
+2024-01-26 08:53:02,911 - app.estructura.catalogo [WARNING] ID 12756-El juego no se ha agregado a la lista
+2024-01-26 08:53:03,038 - app.validaciones.validaciones [INFO] ID 12935-Chaos;Child no puede contener ';'
+2024-01-26 08:53:03,038 - app.estructura.catalogo [WARNING] ID 12935-El juego no se ha agregado a la lista
+2024-01-26 08:53:03,128 - app.validaciones.validaciones [INFO] ID 13070-El elemento The Idolm@ster: Dearly Stars contiene caracteres no perimitidos
+2024-01-26 08:53:03,128 - app.estructura.catalogo [WARNING] ID 13070-El juego no se ha agregado a la lista
+2024-01-26 08:53:03,137 - app.validaciones.validaciones [INFO] ID 13083-Steins;Gate 0 no puede contener ';'
+2024-01-26 08:53:03,137 - app.estructura.catalogo [WARNING] ID 13083-El juego no se ha agregado a la lista
+2024-01-26 08:53:03,165 - app.validaciones.validaciones [INFO] ID 13125-Steins;Gate 0 no puede contener ';'
+2024-01-26 08:53:03,165 - app.estructura.catalogo [WARNING] ID 13125-El juego no se ha agregado a la lista
+2024-01-26 08:53:03,570 - app.validaciones.validaciones [INFO] ID 13687-Chaos;Head - Love Chu*Chu! no puede contener ';'
+2024-01-26 08:53:03,570 - app.estructura.catalogo [WARNING] ID 13687-El juego no se ha agregado a la lista
+2024-01-26 08:53:03,764 - app.validaciones.validaciones [INFO] ID 13938-El elemento The Idolm@ster: Must Songs - Red Board / Blue Board contiene caracteres no perimitidos
+2024-01-26 08:53:03,764 - app.estructura.catalogo [WARNING] ID 13938-El juego no se ha agregado a la lista
+2024-01-26 08:53:03,796 - app.validaciones.validaciones [INFO] ID 13988-Chaos;Head Noah no puede contener ';'
+2024-01-26 08:53:03,796 - app.estructura.catalogo [WARNING] ID 13988-El juego no se ha agregado a la lista
+2024-01-26 08:53:04,065 - app.validaciones.validaciones [INFO] ID 14360-Chaos;Head - Love Chu*Chu! no puede contener ';'
+2024-01-26 08:53:04,065 - app.estructura.catalogo [WARNING] ID 14360-El juego no se ha agregado a la lista
+2024-01-26 08:53:04,251 - app.validaciones.validaciones [INFO] ID 14591-El elemento Megpoid the Music# contiene caracteres no perimitidos
+2024-01-26 08:53:04,251 - app.estructura.catalogo [WARNING] ID 14591-El juego no se ha agregado a la lista
+2024-01-26 08:53:04,339 - app.validaciones.validaciones [INFO] ID 14681-El elemento The IdolM@ster: Gravure For You! Vol. 6 contiene caracteres no perimitidos
+2024-01-26 08:53:04,340 - app.estructura.catalogo [WARNING] ID 14681-El juego no se ha agregado a la lista
+2024-01-26 08:53:04,395 - app.validaciones.validaciones [INFO] ID 14754-El elemento The Battle of Yuu Yuu Hakusho: Shitou! Ankoku Bujutsukai! 120% contiene caracteres no perimitidos
+2024-01-26 08:53:04,396 - app.estructura.catalogo [WARNING] ID 14754-El juego no se ha agregado a la lista
+2024-01-26 08:53:04,463 - app.validaciones.validaciones [INFO] ID 14823-Steins;Gate 0 no puede contener ';'
+2024-01-26 08:53:04,463 - app.estructura.catalogo [WARNING] ID 14823-El juego no se ha agregado a la lista
+2024-01-26 08:53:04,607 - app.validaciones.validaciones [INFO] ID 14975-El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.1 contiene caracteres no perimitidos
+2024-01-26 08:53:04,607 - app.estructura.catalogo [WARNING] ID 14975-El juego no se ha agregado a la lista
+2024-01-26 08:53:04,614 - app.validaciones.validaciones [INFO] ID 14980-El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.6 contiene caracteres no perimitidos
+2024-01-26 08:53:04,614 - app.estructura.catalogo [WARNING] ID 14980-El juego no se ha agregado a la lista
+2024-01-26 08:53:04,666 - app.validaciones.validaciones [INFO] ID 15019-El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.9 contiene caracteres no perimitidos
+2024-01-26 08:53:04,666 - app.estructura.catalogo [WARNING] ID 15019-El juego no se ha agregado a la lista
+2024-01-26 08:53:04,685 - app.validaciones.validaciones [INFO] ID 15041-Steins;Gate: Senkei Kousoku no Phonogram no puede contener ';'
+2024-01-26 08:53:04,686 - app.estructura.catalogo [WARNING] ID 15041-El juego no se ha agregado a la lista
+2024-01-26 08:53:04,768 - app.validaciones.validaciones [INFO] ID 15117-Chaos;Head Noah no puede contener ';'
+2024-01-26 08:53:04,769 - app.estructura.catalogo [WARNING] ID 15117-El juego no se ha agregado a la lista
+2024-01-26 08:53:04,951 - app.validaciones.validaciones [INFO] ID 15306-Robotics;Notes no puede contener ';'
+2024-01-26 08:53:04,952 - app.estructura.catalogo [WARNING] ID 15306-El juego no se ha agregado a la lista
+2024-01-26 08:53:05,045 - app.validaciones.validaciones [INFO] ID 15387-El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.7 contiene caracteres no perimitidos
+2024-01-26 08:53:05,045 - app.estructura.catalogo [WARNING] ID 15387-El juego no se ha agregado a la lista
+2024-01-26 08:53:05,152 - app.validaciones.validaciones [INFO] ID 15460-Steins;Gate: Hiyoku Renri no Darling no puede contener ';'
+2024-01-26 08:53:05,152 - app.estructura.catalogo [WARNING] ID 15460-El juego no se ha agregado a la lista
+2024-01-26 08:53:05,164 - app.validaciones.validaciones [INFO] ID 15472-El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.5 contiene caracteres no perimitidos
+2024-01-26 08:53:05,164 - app.estructura.catalogo [WARNING] ID 15472-El juego no se ha agregado a la lista
+2024-01-26 08:53:05,259 - app.validaciones.validaciones [INFO] ID 15569-El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.8 contiene caracteres no perimitidos
+2024-01-26 08:53:05,259 - app.estructura.catalogo [WARNING] ID 15569-El juego no se ha agregado a la lista
+2024-01-26 08:53:05,365 - app.validaciones.validaciones [INFO] ID 15679-El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.2 contiene caracteres no perimitidos
+2024-01-26 08:53:05,365 - app.estructura.catalogo [WARNING] ID 15679-El juego no se ha agregado a la lista
+2024-01-26 08:53:05,374 - app.validaciones.validaciones [INFO] ID 15692-Robotics;Notes no puede contener ';'
+2024-01-26 08:53:05,374 - app.estructura.catalogo [WARNING] ID 15692-El juego no se ha agregado a la lista
+2024-01-26 08:53:05,391 - app.validaciones.validaciones [INFO] ID 15714-El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.3 contiene caracteres no perimitidos
+2024-01-26 08:53:05,391 - app.estructura.catalogo [WARNING] ID 15714-El juego no se ha agregado a la lista
+2024-01-26 08:53:05,418 - app.validaciones.validaciones [INFO] ID 15743-El elemento TV Anime Idolm@ster: Cinderella Girls G4U! Pack Vol.4 contiene caracteres no perimitidos
+2024-01-26 08:53:05,418 - app.estructura.catalogo [WARNING] ID 15743-El juego no se ha agregado a la lista
+2024-01-26 08:53:05,502 - app.validaciones.validaciones [INFO] ID 15809-El elemento Memories Off #5: Encore contiene caracteres no perimitidos
+2024-01-26 08:53:05,502 - app.estructura.catalogo [WARNING] ID 15809-El juego no se ha agregado a la lista
+2024-01-26 08:53:05,910 - app.validaciones.validaciones [INFO] ID 16110-El elemento Marginal #4: Idol of Supernova contiene caracteres no perimitidos
+2024-01-26 08:53:05,910 - app.estructura.catalogo [WARNING] ID 16110-El juego no se ha agregado a la lista
+2024-01-26 08:53:05,971 - app.validaciones.validaciones [INFO] ID 16164-El elemento htoL#NiQ: The Firefly Diary contiene caracteres no perimitidos
+2024-01-26 08:53:05,972 - app.estructura.catalogo [WARNING] ID 16164-El juego no se ha agregado a la lista
+2024-01-26 08:53:06,088 - app.validaciones.validaciones [INFO] ID 16268-Myself; Yourself no puede contener ';'
+2024-01-26 08:53:06,089 - app.estructura.catalogo [WARNING] ID 16268-El juego no se ha agregado a la lista
+2024-01-26 08:53:06,099 - app.validaciones.validaciones [INFO] ID 16275-Chaos;Head Noah no puede contener ';'
+2024-01-26 08:53:06,099 - app.estructura.catalogo [WARNING] ID 16275-El juego no se ha agregado a la lista
+2024-01-26 08:53:06,166 - app.validaciones.validaciones [INFO] ID 16336-Chaos;Child no puede contener ';'
+2024-01-26 08:53:06,166 - app.estructura.catalogo [WARNING] ID 16336-El juego no se ha agregado a la lista
+2024-01-26 08:53:06,248 - app.validaciones.validaciones [INFO] ID 16419-Chaos;Child no puede contener ';'
+2024-01-26 08:53:06,248 - app.estructura.catalogo [WARNING] ID 16419-El juego no se ha agregado a la lista
+2024-01-26 08:53:06,291 - app.validaciones.validaciones [INFO] ID 16470-El elemento Memories Off #5: Togireta Film contiene caracteres no perimitidos
+2024-01-26 08:53:06,291 - app.estructura.catalogo [WARNING] ID 16470-El juego no se ha agregado a la lista

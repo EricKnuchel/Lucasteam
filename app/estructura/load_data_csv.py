@@ -10,7 +10,18 @@ logger = logging.getLogger("").getChild(__name__)
 
 def load_list():
     try:
-        pass
+        with open('datos/vgsales.csv', 'r') as f:
+            read = f.read()
+            if not read.strip():
+                raise DemoException("El fichero esta vacio")
+            else:
+                f.seek(0)
+                lectura = csv.reader(f)
+                next(lectura)
+                
+                for l in lectura:
+                    Juegos.inser_data(l)
+            
     except FileNotFoundError:
         logger.error("Archivo no encontrado")
     except IOError as io:
@@ -28,7 +39,30 @@ def load_db():
         cursor = conn.cursor()
 
     try:
-        pass
+        sql = "SELECT COUNT(id) FROM Juegos"
+        cursor.execute(sql)
+        num_dat = cursor.fetchone()
+
+        with open('datos/vgsales.csv', 'r') as f:
+            read = f.read()
+            if not read.strip():
+                raise DemoException("El fichero esta vacio")
+            else:
+                f.seek(0)
+                lectura = csv.reader(f)
+                next(lectura)
+                
+                for l in lectura:
+                    if num_dat[0] == 0:
+                        if eliminar_datos_db(l):
+                            sql = "INSERT INTO Juegos (nombre, plataforma, year, genero, publisher, V_NA, V_EU, V_JP, V_other, V_Global) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                            val = (
+                                l[1], l[2], l[3], l[4], l[5], l[6], l[7], l[8], l[9],
+                                l[10])
+
+                            cursor.execute(sql, val)
+
+                            conn.commit()
 
     except FileNotFoundError:
         logger.error("Archivo no encontrado")
@@ -45,5 +79,4 @@ def load_db():
 
 def load_dataframe():
     data = pd.read_csv('datos/vgsales.csv')
-    print(data)
     return data
