@@ -1,1 +1,1 @@
-2024-01-26 08:13:38,798 - app.estructura.load_data_csv [ERROR] list index out of range
+2024-01-26 08:36:12,524 - app.estructura.load_data_csv [ERROR] El fichero csv esta vacio

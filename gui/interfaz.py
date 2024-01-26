@@ -1,4 +1,5 @@
-from tkinter import ttk, Tk, Button, Toplevel, Radiobutton, Label, Entry, BooleanVar, StringVar, Canvas
+from tkinter import ttk, Tk, Button, Toplevel, Radiobutton, Label, Entry, StringVar, Canvas
+from PIL import Image, ImageTk
 from pandasgui import show
 from app.estructura.catalogo import Juegos
 from app.db.consultas_db import *
@@ -19,21 +20,43 @@ class Ventana:
         self.var.set("0")
         self.master.eval(f'tk::PlaceWindow {str(self.master)} center')
 
-        self.master.iconbitmap('')
+        image = Image.open('imagenes/LucaSteam_icon.png')
+        tk_image = ImageTk.PhotoImage(image)
+        self.master.tk.call('wm', 'iconphoto', self.master._w, tk_image)
+        # Crear un Canvas que ocupe toda la ventana
+        self.canvas = Canvas(self.master, width=200, height=200)
+        self.canvas.pack()
 
-        titulo_init = Label(self.master, text="Proyecto LucasSteam ©", bg="#26D9D9", font=('Arial', 12, 'bold'))
-        radio_button_l = Label(self.master, text="De donde quieres ver los datos", bg="#26D9D9")
-        radio_button_lista = Radiobutton(self.master, bg="#26D9D9", variable=self.var, value="0", highlightthickness=0)
-        radio_button_db = Radiobutton(self.master, bg="#26D9D9", variable=self.var, value="1", highlightthickness=0)
-        radio_button_panda = Radiobutton(self.master, bg="#26D9D9", variable=self.var, value="2", highlightthickness=0)
+        # Definir los colores para el degradado
+        # color1 = "#FF9EA0"  # Primer color
+        # color2 = "#87BAE1"  # Segundo color
+        color1 = "#E95985"
+        color2 = "#26D9D9"
+
+        # Dibujar el degradado
+        for i in range(200):
+            # Calcular el color en cada posición vertical
+            r = int((1 - i / 200) * int(color1[1:3], 16) + (i / 200) * int(color2[1:3], 16))
+            g = int((1 - i / 200) * int(color1[3:5], 16) + (i / 200) * int(color2[3:5], 16))
+            b = int((1 - i / 200) * int(color1[5:7], 16) + (i / 200) * int(color2[5:7], 16))
+            color = f"#{r:02X}{g:02X}{b:02X}"
+
+            # Dibujar una línea vertical del color correspondiente
+            self.canvas.create_line(0, i, 200, i, fill=color, width=1)
+
+        titulo_init = Label(self.master, text="Proyecto LucasSteam ©", bg="#D2678E", font=('Arial', 12, 'bold'))
+        radio_button_l = Label(self.master, text="De donde quieres ver los datos", bg="#BA7799")
+        radio_button_lista = Radiobutton(self.master, bg="#859AAF", variable=self.var, value="0", highlightthickness=0)
+        radio_button_db = Radiobutton(self.master, bg="#859AAF", variable=self.var, value="1", highlightthickness=0)
+        radio_button_panda = Radiobutton(self.master, bg="#859AAF", variable=self.var, value="2", highlightthickness=0)
         radio_button_panda.pack_forget()
 
         show = Button(self.master, text="Buscar", width=8, command=lambda: self.setup_main_window(self.var.get()))
         show.place(x=70, y=130)
 
-        label_lista = Label(self.master, text="Lista", bg="#26D9D9")
-        label_db = Label(self.master, text="DB", bg="#26D9D9")
-        label_panda = Label(self.master, text="Panda", bg="#26D9D9")
+        label_lista = Label(self.master, text="Lista", bg="#998DA7")
+        label_db = Label(self.master, text="DB", bg="#998DA7")
+        label_panda = Label(self.master, text="Panda", bg="#998DA7")
 
         titulo_init.place(x=5, y=10)
         radio_button_l.place(x=20, y=40)
@@ -79,7 +102,7 @@ class Ventana:
         if var == "0":
             self.root.geometry("250x200")
             canvas(250, 250)
-            titulo_0 = Label(self.root, text="Proyecto LucasSteam ©", bg="#E95985", font=('Arial', 12, 'bold'))
+            titulo_0 = Label(self.root, text="Proyecto LucasSteam ©", bg="#D2678E", font=('Arial', 12, 'bold'))
             titulo_0.place(x=30, y=10)
 
             insert_button = Button(self.root, text="Datos Manual", width=25, command=self.insert_data)
@@ -91,7 +114,7 @@ class Ventana:
         elif var == "2":
             self.root.geometry("180x180")
             canvas(180, 200)
-            titulo_2 = Label(self.root, text="Proyecto LucasSteam ©", bg="#E95985", font=('Arial', 10, 'bold'))
+            titulo_2 = Label(self.root, text="Proyecto LucasSteam ©", bg="#D2678E", font=('Arial', 10, 'bold'))
             titulo_2.place(x=10, y=10)
 
             show_df_button = Button(self.root, text="Mostrar Juegos (Panda)", width=18, command=self.data_frame)
@@ -146,6 +169,7 @@ class Ventana:
         window.minsize(0, 0)
         window.configure(bg='#FF9EA0')
         window.geometry("250x250")
+
 
         label_id = Label(window, text="ID:", bg='#FF9EA0')
         label_id.place(x=5, y=20)
@@ -282,6 +306,7 @@ class Ventana:
         window.configure(bg='#FF9EA0')
         window.geometry("250x350")
 
+
         manual_name_label = Label(window, text="Nombre", bg='#FF9EA0')
         manual_name_label.pack()
         manual_name = Entry(window)
@@ -374,6 +399,7 @@ class Ventana:
         window.minsize(0, 0)
         window.configure(bg='#FF9EA0')
         window.geometry("200x100")
+   
 
         genero_l = Label(window, text="Genero", bg='#FF9EA0')
         genero_l.pack()
@@ -424,6 +450,7 @@ class Ventana:
         window.minsize(0, 0)
         window.configure(bg='#FF9EA0')
 
+
         # Creación del Treeview en la ventana secundaria
         tree = ttk.Treeview(window)
         self.setup_treeview(tree)
@@ -452,8 +479,9 @@ class Ventana:
         window = Toplevel(self.master)
         window.title(f"Lista de Juegos (Género: {g}")
         window.resizable(0, 0)
-        window.minsize(0, 0)
+        window.minsize(False, False)
         window.configure(bg='#FF9EA0')
+  
 
         # Creación del Treeview en la ventana secundaria
         tree = ttk.Treeview(window)
@@ -487,8 +515,8 @@ class Ventana:
             tree.heading(col, text=col)
             tree.column(col, anchor="center", width=60)  # aqui se ajusta el año de la tabla
 
-    def setup_treeview_ventas(self, tree):
-        columns = ("Rank", "Name", "Platform", "Year", "Publisher", "V_EU")
+    def setup_treeview_ventas(self, tree, region):
+        columns = ("Rank", "Name", "Platform", "Year", "Publisher", region)
 
         tree["columns"] = columns
         tree["show"] = "headings"
@@ -514,6 +542,7 @@ class Ventana:
         window.resizable(0, 0)
         window.minsize(0, 0)
         window.configure(bg='#FF9EA0')
+
 
         # Creación del Treeview en la ventana secundaria
         tree = ttk.Treeview(window)
@@ -550,6 +579,7 @@ class Ventana:
         window.resizable(0, 0)
         window.minsize(0, 0)
         window.configure(bg='#FF9EA0')
+     
 
         # Creación del Treeview en la ventana secundaria
         tree = ttk.Treeview(window)
@@ -610,9 +640,10 @@ class Ventana:
         window.resizable(0, 0)
         window.configure(bg='#FF9EA0')
 
+
         # Creación del Treeview en la ventana secundaria
         tree = ttk.Treeview(window)
-        self.setup_treeview_ventas(tree)
+        self.setup_treeview_ventas(tree, region="V_Global")
 
         max_vent = show_max_venta()
 
@@ -640,9 +671,10 @@ class Ventana:
         window.minsize(0, 0)
         window.configure(bg='#FF9EA0')
 
+
         # Creación del Treeview en la ventana secundaria
         tree = ttk.Treeview(window)
-        self.setup_treeview_ventas(tree)
+        self.setup_treeview_ventas(tree, region="V_EU")
 
         max_vent = show_media()
 
@@ -670,6 +702,7 @@ class Ventana:
         window.minsize(0, 0)
         window.configure(bg='#FF9EA0')
         window.geometry("200x100")
+
 
         region_l = Label(window, text="Región", bg='#FF9EA0')
         region_l.pack()
@@ -721,6 +754,7 @@ class Ventana:
         window.configure(bg='#FF9EA0')
         window.geometry("200x100")
 
+
         editor_l = Label(window, text="Editor", bg='#FF9EA0')
         editor_l.pack()
         editor = StringVar(window)
@@ -747,6 +781,7 @@ class Ventana:
         window.resizable(0, 0)
         window.minsize(0, 0)
         window.configure(bg='#FF9EA0')
+
 
         # Creación del Treeview en la ventana secundaria
         tree = ttk.Treeview(window)
