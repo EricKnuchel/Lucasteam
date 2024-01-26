@@ -2,6 +2,19 @@ from app.db.conexion_db import conectar_a_mysql
 
 
 def update_juegos(id, nombre, plataforma, year, genero, publisher):
+    """_summary_
+
+    Args:
+        id (_type_): _description_
+        nombre (_type_): _description_
+        plataforma (_type_): _description_
+        year (_type_): _description_
+        genero (_type_): _description_
+        publisher (_type_): _description_
+        
+        Funcion que se encarga de actualizar los juegos
+        haciendo referencia a su ID
+    """
     conn = conectar_a_mysql()
     if conn:
         cursor = conn.cursor()
@@ -22,6 +35,14 @@ def update_juegos(id, nombre, plataforma, year, genero, publisher):
 
 
 def delete_juego(id):
+    """_summary_
+
+    Args:
+        id (_type_): _description_
+
+    Returns:
+        _type_: Boolean
+    """
     conn = conectar_a_mysql()
     if conn:
         cursor = conn.cursor()
@@ -51,6 +72,15 @@ def delete_juego(id):
 
 
 def get_info_for_id(id):
+    """_summary_
+
+    Args:
+        id (_type_): _description_
+
+    Returns:
+        _type_: _description_
+        la informacion de el juego correspondiente al ID
+    """
     conn = conectar_a_mysql()
     if conn:
         cursor = conn.cursor()
@@ -73,6 +103,14 @@ def get_info_for_id(id):
 
 
 def listar_juegos_db():
+    """_summary_
+
+    Returns:
+        _type_: Lista
+        
+        Una lista con los juegos 
+        extraidas desde la base de datos 
+    """
     conn = conectar_a_mysql()
     if conn:
         try:

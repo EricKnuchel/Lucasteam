@@ -1,13 +1,31 @@
-from app.validaciones import validaciones as val
 import logging
+
+from app.validaciones import validaciones as val
 
 logger = logging.getLogger("").getChild(__name__)
 
+
 class Juegos:
+    """_summary_
+
+    clase contenedora de lops metodos
+    que se encargan de insertar los datos 
+    en la lista
+    """
     lista_juegos = []
 
     @classmethod
     def inser_data(cls, data):
+        """_summary_
+
+        Args:
+            data (_type_): _description_
+            los datos cargargados desde el csv
+
+        Returns:
+            _type_: list
+            la lista con sus datos incertados
+        """
         j = Juego(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10])
 
         if Juegos.alta_juego(j):
@@ -17,6 +35,14 @@ class Juegos:
 
     @classmethod
     def alta_juego(cls, j):
+        """_summary_
+
+        Args:
+            j = juego (_type_): _description_
+
+        Returns:
+            _type_: _Boolean_
+        """
         alta = False
 
         # validación de campos vacios
@@ -39,11 +65,32 @@ class Juegos:
 
     @classmethod
     def __str__(cls):
+        """_summary_
+
+        Returns:
+            _type_: _lista_
+            recorriendo cada objeto y convirtiendolo a string
+        """
         return '\n'.join(str(juego) for juego in cls.lista_juegos)
 
 
 class Juego:
     def __init__(self, rank, name, plataf, year, genero, editor, v_na, v_eu, v_jp, v_otras, v_glob):
+        """_summary_
+
+        Args:
+            rank (_type_): _description_
+            name (_type_): _description_
+            plataf (_type_): _description_
+            year (_type_): _description_
+            genero (_type_): _description_
+            editor (_type_): _description_
+            v_na (_type_): _description_
+            v_eu (_type_): _description_
+            v_jp (_type_): _description_
+            v_otras (_type_): _description_
+            v_glob (_type_): _description_
+        """
         self.rank = rank
         self.name = name
         self.plataf = plataf
@@ -57,18 +104,31 @@ class Juego:
         self.v_glob = v_glob
 
     def listar_atrib(self):
+        """_summary_
+
+        Returns:
+            _type_: _lista_
+            con todos los atributos dentro
+        """
         lista_atrib = [self.rank, self.name, self.plataf, self.year, self.genero, self.editor, self.v_na, self.v_eu,
                        self.v_jp, self.v_otras, self.v_glob]
         return lista_atrib
 
     def __str__(self):
+        """_summary_
+
+        Returns:
+            _type_: _lista_
+            recorriendo cada objeto y convirtiendolo a string
+        """
         return f"Juego(rank={self.rank}, name={self.name}, plataf={self.plataf}, year={self.year}, genero={self.genero}, " \
                f"editor={self.editor}, v_na={self.v_na}, v_eu={self.v_eu}, v_jp={self.v_jp}, v_otras={self.v_otras}, v_glob={self.v_glob})"
 
     # Este es un metodo de Python que se usa para definir el comportamiento de el operador de igualdad (==)
     def __eq__(self, other):
-        """# verificamos si other es una instancia de la clase Juegos
-        si no lo es no se considerarian iguales y retorna false"""
+        """verificamos si other(una region) es una instancia de la clase Juegos
+        si no lo es no se considerarian iguales y retorna false
+        """
         if not isinstance(other, Juego):
             return False
         return vars(self) == vars(other)

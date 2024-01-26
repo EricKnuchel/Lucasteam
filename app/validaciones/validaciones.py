@@ -1,9 +1,20 @@
-import re
 import logging
+import re
 
 logger = logging.getLogger("").getChild(__name__)
 
+
 def juego_repetido(j, l_j):
+    """_summary_
+
+    Args:
+        j = juego(_type_): _description_
+        l_j = lista_juegos (_type_): _description_
+
+    Returns:
+        _type_: _Boolean_
+        true si el juego existe o false si el juego no existe
+    """
     repetido = False
     for i in l_j:
         if i.name == j.name and i.plataf == j.plataf and i.year == j.year:
@@ -15,6 +26,15 @@ def juego_repetido(j, l_j):
 
 
 def campos_correctos(j):
+    """_summary_
+
+    Args:
+        j (_type_): _description_
+
+    Returns:
+        _type_: _Boolean_
+        true si todos los campos son correctos o false si no lo son
+    """
     correcto = False
     lista_atrib = j.listar_atrib()
     caracteres_no_permitidos = r"%$#@¨{}[]\^`"
@@ -39,6 +59,16 @@ def campos_correctos(j):
 
 
 def validar_nombre(n):
+    """_summary_
+
+    Args:
+        n = nombre del juego (_type_): _description_
+        
+    Returns:
+        _type_: _Boolean_ , _description_
+        true si el nombre es correcto o false si no lo es 
+        y el nombre de el juego en los dos casos
+    """
     correcto = False
     letras_n = list(n)
     if len(letras_n) < 2:
@@ -51,6 +81,18 @@ def validar_nombre(n):
 
 
 def validar_ventas(v):
+    """_summary_
+
+    Args:
+        v = ventas (_type_): _description_
+
+    Returns:
+        _type_: _Boolean_, _list_
+        true si el numero de las ventas 
+        tiene el formato correcto es correcto 
+        o false si no lo tiene
+        y la lista de la venta
+    """
     correcto = False
     salida = False
     i = 0
@@ -88,8 +130,17 @@ def validar_ventas(v):
     return correcto, v
 
 
-
 def eliminar_datos_db(d):
+    """_summary_
+
+    Args:
+        d = datos(_type_): _description_
+        lita de los datos de el csv
+
+    Returns:
+        _type_: _Boolean_
+        true si cumple las espesificaciones o false si no las cumple
+    """
     add = False
     if d[3] == 'N/A':
         logger.info(f"ID {d[3]}-El juego con tiene un year nulo")
@@ -97,11 +148,21 @@ def eliminar_datos_db(d):
     else:
         add = True
         return add
-    
+
+
 def validar_year_par(year):
+    """_summary_
+
+    Args:
+        year (_type_): _description_
+
+    Returns:
+        _type_: _list_
+        lista filtrada en años pares
+    """
     for y in year:
-        if y[3]%2 != 0:
+        if y[3] % 2 != 0:
             logger.info(f"ID {y[0]}-Año impar encontrado: {y[3]}")
             year.remove(y)
-            
+
     return year

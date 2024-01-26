@@ -1,9 +1,20 @@
-from app.db.conexion_db import conectar_a_mysql
 import mysql
+
+from app.db.conexion_db import conectar_a_mysql
 
 
 def show_genere(gen):
-    conn = conectar_a_mysql()
+    """_summary_
+
+    Args:
+        gen (_type_): _description_
+        la entrada es el generos a filtrar
+
+    Returns:
+        _type_: _list_
+        una lista con los juegos que coninciden con el genero
+    """
+    conn = conectar_a_mysql()  # conectando con la base de datos
     if conn:
         try:
             cursor = conn.cursor()
@@ -21,7 +32,13 @@ def show_genere(gen):
 
 
 def show_siglo_xx():
-    conn = conectar_a_mysql()
+    """_summary_
+
+    Returns:
+        _type_: _list_
+        una lista de todos los juegos del siglo XX
+    """
+    conn = conectar_a_mysql()  # conectando con la base de datos
 
     if conn:
 
@@ -45,11 +62,15 @@ def show_siglo_xx():
         print("No se pudo conectar a la base de datos.")
         return []
 
-    return juegos_siglo_xx
-
 
 def show_platform():
-    conn = conectar_a_mysql()
+    """_summary_
+
+    Returns:
+        _type_: _list_
+        una lista de todos los juegos que coincidan con el Editor especificado
+    """
+    conn = conectar_a_mysql()  # conectando con la base de datos
 
     if conn:
 
@@ -73,11 +94,15 @@ def show_platform():
         print("No se pudo conectar a la base de datos.")
         return []
 
-    return nintendo
-
 
 def show_year_par():
-    conn = conectar_a_mysql()
+    """_summary_
+
+    Returns:
+        _type_: _list_
+        una lista de todos los juegos que coincidan con los años pares
+    """
+    conn = conectar_a_mysql()  # conectando con la base de datos
 
     if conn:
 
@@ -101,11 +126,15 @@ def show_year_par():
         print("No se pudo conectar a la base de datos.")
         return []
 
-    return juegos_par
-
 
 def show_max_venta():
-    conn = conectar_a_mysql()  # Asumiendo que tienes una función llamada conectar_a_mysql()
+    """_summary_
+
+    Returns:
+        _type_: _list_
+        una lista de todos los juegos mas vendidos a nivel global
+    """
+    conn = conectar_a_mysql()  # conectando con la base de datos
 
     if conn:
 
@@ -130,11 +159,18 @@ def show_max_venta():
         print("No se pudo conectar a la base de datos.")
         return []
 
-    return juegos_max_venta
-
 
 def show_max_venta_regional(region):
-    conn = conectar_a_mysql()  # Asumiendo que tienes una función llamada conectar_a_mysql()
+    """_summary_
+
+    Args:
+        region (_type_): _description_
+
+    Returns:
+        _type_: _list_
+        una lista de los juegos mas vendidos por la region espesificada
+    """
+    conn = conectar_a_mysql()  # conectando con la base de datos
 
     if conn:
 
@@ -159,11 +195,16 @@ def show_max_venta_regional(region):
         print("No se pudo conectar a la base de datos.")
         return []
 
-    return juegos_max_venta
-
 
 def show_media():
-    conn = conectar_a_mysql()  # Asumiendo que tienes una función llamada conectar_a_mysql()
+    """_summary_
+
+    Returns:
+        _type_: _list_
+        una lista de los juegos con la media de venta 
+        superior a la media de venta en Europa
+    """
+    conn = conectar_a_mysql()  # conectando con la base de datos
 
     if conn is None:
         print("No se pudo conectar a la base de datos.")
@@ -183,7 +224,6 @@ def show_media():
         cursor = conn.cursor()
         cursor.execute(query_juegos_por_encima_de_media, (media,))
         juegos_media = cursor.fetchall()
-        # return juegos_media
 
     except mysql.connector.Error as e:
         print(f"Error al ejecutar la consulta: {e}")
@@ -197,16 +237,25 @@ def show_media():
 
 
 def show_editor(e):
-    conn = conectar_a_mysql()
+    """_summary_
+
+    Args:
+        e (_type_): _description_
+
+    Returns:
+        _type_: _list_
+        una lista de editores con sus juegos asociados 
+    """
+    conn = conectar_a_mysql()  # conectando con la base de datos
     if conn:
         try:
             cursor = conn.cursor()
             sql = 'SELECT id, nombre, publisher FROM Juegos WHERE publisher LIKE %s'
             val = (e,)
             cursor.execute(sql, val)
-            lista_gen = cursor.fetchall()
+            lista_edi = cursor.fetchall()
 
-            return lista_gen
+            return lista_edi
         except mysql.connector.Error as e:
             print(f"Error de conexión: {e}")
         finally:
