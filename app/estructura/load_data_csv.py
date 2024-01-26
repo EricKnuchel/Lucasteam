@@ -1,13 +1,20 @@
 import csv
 import logging
 import pandas as pd
-from app.estructura.catalogo import Juegos
+
 from app.db.conexion_db import conectar_a_mysql
+from app.estructura.catalogo import Juegos
 from app.validaciones.validaciones import eliminar_datos_db
 from exception.exception import DemoException
 
 logger = logging.getLogger("").getChild(__name__)
+
+
 def load_list():
+    """_summary_
+        Funcion que se encarga de leer
+        los datos de el csv
+    """
     try:
         with open('datos/vgsales.csv', 'r') as f:
             read = f.read()
@@ -17,10 +24,10 @@ def load_list():
                 f.seek(0)
                 lectura = csv.reader(f)
                 next(lectura)
-                
+
                 for l in lectura:
                     Juegos.inser_data(l)
-            
+
     except FileNotFoundError:
         logger.error("Archivo no encontrado")
     except IOError as io:
@@ -32,7 +39,12 @@ def load_list():
 
 
 def load_db():
-    conn = conectar_a_mysql()
+    """_summary_
+
+        Funcion encargada de insertar 
+        las datos en una base de datos
+    """
+    conn = conectar_a_mysql()  # conectar con la base de datos
 
     if conn:
         cursor = conn.cursor()
@@ -50,7 +62,7 @@ def load_db():
                 f.seek(0)
                 lectura = csv.reader(f)
                 next(lectura)
-                
+
                 for l in lectura:
                     if num_dat[0] == 0:
                         if eliminar_datos_db(l):
@@ -77,5 +89,10 @@ def load_db():
 
 
 def load_dataframe():
+    """_summary_
+
+    Returns:
+        los datos del csv leidos por la libreria 'Pandas'
+    """
     data = pd.read_csv('datos/vgsales.csv')
     return data

@@ -3,6 +3,12 @@ from configparser import ConfigParser
 
 
 def conectar_a_mysql():
+    """_summary_
+
+    Returns:
+        _type_: connection
+        la conexion a la base de datos
+    """
     config = ConfigParser()
     config.read('app\\config.properties')
 
@@ -25,6 +31,12 @@ def conectar_a_mysql():
 
 
 def create_table():
+    """_summary_
+    
+    _type_: Description
+    crea estructura de la Tabla en la base de datos
+    
+    """
     conn = conectar_a_mysql()
     if conn:
         try:

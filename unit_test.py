@@ -1,15 +1,16 @@
 import unittest
-from app.estructura.catalogo import Juego, Juegos
-from app.crud.operaciones import delete_juego, update_juegos, listar_juegos_db
-from app.db.consultas_db import conectar_a_mysql, show_genere, show_siglo_xx
+
 from app.crud.operaciones import *
-from app.db.consultas_db import *
 from app.crud.operaciones import delete_juego, update_juegos
+from app.crud.operaciones import delete_juego, update_juegos, listar_juegos_db
+from app.db.consultas_db import *
+from app.db.consultas_db import conectar_a_mysql, show_genere, show_siglo_xx
+from app.estructura.catalogo import Juego, Juegos
 from app.validaciones.validaciones import validar_year_par
 
 
-# Prueba unitaria de la funsion insert_data
-class TestJuegos(unittest.TestCase):
+# Bateria de Prueba unitaria
+class TestJuegos(unittest.TestCase):  # test a la funsion isert_data
     def test_inser_data(self):
         test_data = ['1', 'Example game', 'PlatformX', '2022', 'Action', 'PublisherY', '10.00', '5.00', '2.00', '1.00',
                      '18.00']
@@ -23,7 +24,7 @@ class TestJuegos(unittest.TestCase):
         self.assertEqual(actual_result, expected_result)
 
 
-class TestDeleteJuego(unittest.TestCase):
+class TestDeleteJuego(unittest.TestCase):  # test a la funsion delete_juego
 
     def test_delete_juego_exitoso(self):
         # Supongamos que 'id_a_eliminar' es un ID válido que quieres probar
@@ -36,7 +37,7 @@ class TestDeleteJuego(unittest.TestCase):
         self.assertFalse(resultado, "La eliminación debería fallar ya que el juego no existe")
 
 
-class TestUpdateJuegos(unittest.TestCase):
+class TestUpdateJuegos(unittest.TestCase):  # test a la funsion update_juego
     def test_update_juegos(self):
         # Supongamos que tienes un juego con el id=1 en tu base de datos
         # Cambia los valores según tu base de datos y la entrada que desees probar
@@ -80,7 +81,7 @@ class TestUpdateJuegos(unittest.TestCase):
         self.assertFalse(resultado, "La actualización debería fallar ya que el juego con el ID proporcionado no existe")
 
 
-class TestListarDatosDB(unittest.TestCase):
+class TestListarDatosDB(unittest.TestCase):  # test a la funsion listar_juegos_db
     # Se comprueba que los datos devueltos traen todos los campos
     def test_campos_lista_db(self):
         num_campos_esperados = 6
@@ -90,7 +91,7 @@ class TestListarDatosDB(unittest.TestCase):
             self.assertEqual(len(d), num_campos_esperados)
 
 
-class TestFiltrarGenero(unittest.TestCase):
+class TestFiltrarGenero(unittest.TestCase):  # test a la funsion filtrar por genero
 
     def test_lista_filtrar_genero(self):
         genero_esperado = "Sports"
@@ -102,7 +103,7 @@ class TestFiltrarGenero(unittest.TestCase):
             self.assertIn(genero_esperado, g, f"El género {genero_esperado} no está presente en el elemento {g}")
 
 
-class TestShowSigloXX(unittest.TestCase):
+class TestShowSigloXX(unittest.TestCase):  # test a la funsion mostrar juegos del siglo XX
     def test_show_siglo_xx_success(self):
         # Llama a la función
         result = show_siglo_xx()
@@ -117,7 +118,7 @@ class TestShowSigloXX(unittest.TestCase):
             self.assertEqual(len(juego), 6)
 
 
-class TestShowPlatform(unittest.TestCase):
+class TestShowPlatform(unittest.TestCase):  # test a la funsion mostrar plataformas
 
     def test_lista_vacia(self):
         result = show_platform()
@@ -131,7 +132,7 @@ class TestShowPlatform(unittest.TestCase):
         self.assertIn('Nintendo', [editor[5] for editor in result])
 
 
-class TestShowYearPar(unittest.TestCase):
+class TestShowYearPar(unittest.TestCase):  # test a la funsion mostarr juegos de años pares
 
     def test_anios_pares(self):
         # Suponiendo que todos los datos en la base de datos tienen años pares
@@ -141,54 +142,54 @@ class TestShowYearPar(unittest.TestCase):
         for juego in result:
             self.assertTrue(juego[3] % 2 == 0)  # Ajusta el índice según la posición del año en tus datos
             self.assertEqual(len(juego), 6)
-            
+
     def test_validacion_year_par(self):
-        dato_erroneo = (0,"Juego impar","Plataforma impar",2001,"Genero impar","Editor impar")
-        
+        dato_erroneo = (0, "Juego impar", "Plataforma impar", 2001, "Genero impar", "Editor impar")
+
         lista_year_par = show_year_par()
-        
+
         lista_year_par.append(dato_erroneo)
-        
+
         lista_year_par_valid = validar_year_par(lista_year_par)
-        
+
         self.assertNotIn(dato_erroneo, lista_year_par_valid, f"El elemento incorrrecto se encuentra en la lista")
-            
-            
-class TestShowMaxVentasRegional(unittest.TestCase):
-    
+
+
+class TestShowMaxVentasRegional(unittest.TestCase):  # test a la funsion max_ventas_regional
+
     def test_lista_filtrar_region(self):
         conn = conectar_a_mysql()
-        
+
         if conn:
             cursor = conn.cursor()
             sql = "SELECT id, nombre, plataforma, year, publisher, V_NA FROM Juegos ORDER BY V_NA DESC LIMIT 5"
             cursor.execute(sql)
-            
+
             lista_region_esperada = cursor.fetchall()
-            
+
         lista_region_obtenida = show_max_venta_regional("V_NA")
-        
+
         self.assertEqual(lista_region_esperada, lista_region_obtenida)
-        
-        
-class TestShowMaxVentasGlobal(unittest.TestCase):
-    
+
+
+class TestShowMaxVentasGlobal(unittest.TestCase):  # test a la funsion max_ventas_global
+
     def test_lista_filtrar_global(self):
         conn = conectar_a_mysql()
-        
+
         if conn:
             cursor = conn.cursor()
             sql = "SELECT id, nombre, plataforma, year, publisher, V_Global FROM Juegos ORDER BY V_Global DESC LIMIT 5"
             cursor.execute(sql)
-            
+
             lista_global_esperada = cursor.fetchall()
-            
+
         lista_global_obtenida = show_max_venta()
-        
+
         self.assertEqual(lista_global_esperada, lista_global_obtenida)
-        
-        
-class TestShowPublisherList(unittest.TestCase):
+
+
+class TestShowPublisherList(unittest.TestCase):  # test a la funsion de mostarr los juegos de el editor
     def test_lista_filtro_publisher(self):
         editor_esperado = "Nintendo"
         lista_editor = show_editor(editor_esperado)
@@ -196,10 +197,10 @@ class TestShowPublisherList(unittest.TestCase):
 
         self.assertTrue(resultados_filtrados, f"No se encontraron elementos con el editor {editor_esperado}")
         for e in resultados_filtrados:
-            self.assertIn(editor_esperado, e, f"El editor {editor_esperado} no está presente en el elemento {e}") 
+            self.assertIn(editor_esperado, e, f"El editor {editor_esperado} no está presente en el elemento {e}")
 
 
-class TestShowMedia(unittest.TestCase):
+class TestShowMedia(unittest.TestCase):  # test a la funsion mostrar media
     def test_ventas_media(self):
         # Llama a la función que deseas probar
         result = show_media()
